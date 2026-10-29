@@ -38,11 +38,12 @@ export default function Motion() {
       const el = id === "#top" ? null : document.querySelector(id);
       const y = el ? el.getBoundingClientRect().top + window.scrollY + offset : 0;
       if (Math.abs(y - window.scrollY) > window.innerHeight * 2.5) {
-        // Long jump: fade through a curtain instead of scrubbing every scroll animation on the way
-        gsap.timeline()
-          .to(".jump-curtain", { opacity: 1, duration: 0.3, ease: "power2.in" })
-          .add(() => { lenis.scrollTo(dest, { immediate: true, force: true, offset }); ScrollTrigger.update(); })
-          .to(".jump-curtain", { opacity: 0, duration: 0.55, ease: "power2.out", delay: 0.08 });
+        // Long jump: go there in one step (no scrubbing through every animation on the way),
+        // then let the destination section settle in softly
+        lenis.scrollTo(dest, { immediate: true, force: true, offset });
+        ScrollTrigger.update();
+        const sec = el ? el.closest("section") || el : document.querySelector(".hero");
+        gsap.fromTo(sec, { opacity: 0.35, y: 18 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out", clearProps: "transform,opacity" });
       } else {
         lenis.scrollTo(dest, { duration: 1.2, offset });
       }

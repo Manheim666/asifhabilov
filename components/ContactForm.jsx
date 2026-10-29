@@ -1,29 +1,38 @@
 "use client";
 
-// Sends the visitor's message to my inbox through FormSubmit (no backend needed on a static site).
-// The first message triggers a one-time activation email to the receiving address.
+// Contact form for a static site. With a Web3Forms access key the message is delivered by Web3Forms;
+// without a key, or if delivery fails, the visitor's email app opens with everything pre-filled.
 import { useState } from "react";
 
-export default function ContactForm({ email }) {
-  const [state, setState] = useState("idle"); // idle | sending | sent | error
+export default function ContactForm({ email, formKey }) {
+  const [state, setState] = useState("idle"); // idle | sending | sent | mailto
+
+  const openMail = ({ name, email: from, message }) => {
+    const subject = encodeURIComponent(`Portfolio message from ${name}`);
+    const body = encodeURIComponent(`${message}\n\n${name}\n${from}`);
+    window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+    setState("mailto");
+  };
 
   async function onSubmit(e) {
     e.preventDefault();
     const form = e.currentTarget;
     const data = Object.fromEntries(new FormData(form));
     if (data._honey) return; // bots fill the hidden field
+    if (!formKey) return openMail(data);
     setState("sending");
     try {
-      const res = await fetch(`https://formsubmit.co/ajax/${email}`, {
+      const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({ name: data.name, email: data.email, message: data.message, _subject: `Portfolio message from ${data.name}`, _template: "table", _captcha: "false" }),
+        body: JSON.stringify({ access_key: formKey, subject: `Portfolio message from ${data.name}`, from_name: data.name, email: data.email, message: data.message }),
       });
-      if (!res.ok) throw new Error(String(res.status));
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok || json.success === false) throw new Error("send failed");
       setState("sent");
       form.reset();
     } catch {
-      setState("error");
+      openMail(data);
     }
   }
 
@@ -48,7 +57,7 @@ export default function ContactForm({ email }) {
         </button>
         <p className="form-status" role="status" aria-live="polite">
           {state === "sent" && "Message sent. I’ll reply by email."}
-          {state === "error" && <>Couldn’t send the message. Email me directly at <a href={`mailto:${email}`}>{email}</a>.</>}
+          {state === "mailto" && "Your email app should open with the message ready to send."}
         </p>
       </div>
     </form>

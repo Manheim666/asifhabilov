@@ -345,3 +345,10 @@ body { transition: background-color .4s var(--ease), color .4s var(--ease); }
 
 /* Page-jump curtain used for long anchor jumps */
 .jump-curtain { position: fixed; inset: 0; z-index: 70; background: var(--bg); opacity: 0; pointer-events: none; }
+
+/* Contact block centred */
+.contact .wrap { text-align: center; }
+.contact-big { margin-inline: auto; width: fit-content; }
+.contact .contact-form { margin-inline: auto; text-align: left; }
+.contact .form-foot { justify-content: center; }
+.contact-row { justify-content: center; gap: 1rem 2.5rem; }

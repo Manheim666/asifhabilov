@@ -198,7 +198,7 @@ export function Contact() {
           <span className="line" data-reveal>Let’s build</span>
           <span className="line accent" data-reveal>something</span>
         </a>
-        <ContactForm email={person.email} />
+        <ContactForm email={person.email} formKey={person.web3formsKey} />
         <div className="contact-row" data-reveal>
           <a href={`mailto:${person.email}`}>{person.email}</a>
           <a href={person.github} target="_blank" rel="noopener">github.com/Manheim666</a>
