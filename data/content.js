@@ -104,10 +104,10 @@ const projectList = [
     fit: "contain",
     imageAlt: "Confusion matrix of predicted versus true severity, next to a bar chart of the most important features: internet hours by age, age and sleep disturbance score.",
     summary:
-      "Kaggle Child Mind Institute competition. Predicts a child's severity index from physical, fitness, sleep and screen-time data, so screening doesn't depend on a long clinical questionnaire. A LightGBM, XGBoost and CatBoost ensemble with cut-offs tuned for quadratic weighted kappa.",
+      "Kaggle Child Mind Institute competition. Predicts a child's severity index from physical, fitness, sleep and screen-time data, so screening doesn't depend on a long clinical questionnaire. Two LightGBM, XGBoost and CatBoost ensembles, one on the severity index and one on the 0–80 questionnaire total, blended with cut-offs tuned for quadratic weighted kappa.",
     role: "Solo project. Wrist-sensor summaries were tested and did not improve validation, so the simpler model was kept.",
     metrics: [
-      { value: 0.452, decimals: 3, label: "QWK, nested CV" },
+      { value: 0.46, decimals: 2, label: "QWK, nested CV" },
       { value: 2736, decimals: 0, label: "Children" },
       { value: 3, decimals: 0, label: "Boosting models" },
     ],
