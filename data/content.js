@@ -34,7 +34,7 @@ export const about = {
   ],
 };
 
-export const projects = [
+const projectList = [
   {
     id: "bee",
     index: "01",
@@ -133,7 +133,7 @@ export const projects = [
   },
 ];
 
-export const path = [
+const pathNewestFirst = [
   {
     when: "2023 – 2027",
     title: "BSc Computer Science, Baku State University",
@@ -172,3 +172,15 @@ export const skills = {
   ],
   learning: ["SHAP and explainable AI", "RAG and LLM applications", "TensorFlow"],
 };
+
+// Display order and numbering for projects (computer vision first)
+export const projects = ["bee", "cassava", "fire", "screw", "cmi"]
+  .map((id) => projectList.find((p) => p.id === id))
+  .map((p, i) => ({ ...p, index: String(i + 1).padStart(2, "0") }));
+
+// Timeline in the order time passes: degree start, internship, then the 2026 programmes
+export const path = [0, 4, 3, 2, 1].map((i) => pathNewestFirst[i]);
+
+// Site is served from https://manheim666.github.io/asifhabilov/ ; prefix local asset paths
+export const BASE = process.env.NEXT_PUBLIC_BASE_PATH || "";
+export const asset = (p) => (p.startsWith("/") ? BASE + p : p);

@@ -10,7 +10,7 @@ const archivo = localFont({
 });
 
 export const metadata = {
-  metadataBase: new URL("https://manheim666.github.io"),
+  metadataBase: new URL("https://manheim666.github.io/asifhabilov/"),
   title: "Asif Habilov · ML engineer, computer vision",
   description:
     "Asif Habilov builds computer vision, forecasting and data pipelines end to end. Projects, results and contact.",
@@ -21,13 +21,13 @@ export const metadata = {
   },
 };
 
-export const viewport = { themeColor: "#07090c", colorScheme: "dark" };
+export const viewport = { themeColor: "#07090c", colorScheme: "dark light" };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={archivo.variable} suppressHydrationWarning>
       <head>
-        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js');if(matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('reduced')" }} />
+        <script dangerouslySetInnerHTML={{ __html: "(function(){var d=document.documentElement;d.classList.add('js');if(matchMedia('(prefers-reduced-motion: reduce)').matches)d.classList.add('reduced');var t;try{t=localStorage.getItem('theme')}catch(e){}if(!t)t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';d.setAttribute('data-theme',t);document.addEventListener('click',function(e){if(!e.target.closest('[data-theme-toggle]'))return;var n=d.getAttribute('data-theme')==='light'?'dark':'light';d.setAttribute('data-theme',n);try{localStorage.setItem('theme',n)}catch(x){}})})()" }} />
       </head>
       <body suppressHydrationWarning>{children}</body>
     </html>

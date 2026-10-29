@@ -7,6 +7,7 @@ export default function Page() {
       <a className="skip" href="#main">Skip to content</a>
       <div className="intro" aria-hidden="true"><span className="intro-count">000</span><span className="intro-bar" /></div>
       <div className="progress" aria-hidden="true" />
+      <div className="jump-curtain" aria-hidden="true" />
       <div className="cursor" aria-hidden="true" />
       <Nav />
       <main id="main">

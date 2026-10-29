@@ -33,7 +33,19 @@ export default function Motion() {
       const id = a.getAttribute("href");
       if (!id || !id.startsWith("#")) return;
       e.preventDefault();
-      lenis.scrollTo(id === "#top" ? 0 : id, { duration: 1.4, offset: id === "#work" ? 0 : -40 });
+      const dest = id === "#top" ? 0 : id;
+      const offset = id === "#work" || id === "#top" ? 0 : -72;
+      const el = id === "#top" ? null : document.querySelector(id);
+      const y = el ? el.getBoundingClientRect().top + window.scrollY + offset : 0;
+      if (Math.abs(y - window.scrollY) > window.innerHeight * 2.5) {
+        // Long jump: fade through a curtain instead of scrubbing every scroll animation on the way
+        gsap.timeline()
+          .to(".jump-curtain", { opacity: 1, duration: 0.3, ease: "power2.in" })
+          .add(() => { lenis.scrollTo(dest, { immediate: true, force: true, offset }); ScrollTrigger.update(); })
+          .to(".jump-curtain", { opacity: 0, duration: 0.55, ease: "power2.out", delay: 0.08 });
+      } else {
+        lenis.scrollTo(dest, { duration: 1.2, offset });
+      }
     };
     document.addEventListener("click", onAnchor);
 
@@ -135,10 +147,19 @@ export default function Motion() {
       const xTo = gsap.quickTo(cursor, "x", { duration: 0.35, ease: "power3" });
       const yTo = gsap.quickTo(cursor, "y", { duration: 0.35, ease: "power3" });
       onMove = (e) => { xTo(e.clientX); yTo(e.clientY); cursor.style.opacity = "1"; };
-      onOver = (e) => cursor.classList.toggle("is-link", !!e.target.closest("a, button, .skill-group"));
+      onOver = (e) => cursor.classList.toggle("is-link", !!e.target.closest("a, button, .bento-card li"));
       window.addEventListener("pointermove", onMove);
       window.addEventListener("pointerover", onOver);
     }
+
+    // Spotlight that follows the pointer across the skill cards
+    const bento = document.querySelector("[data-spotlight]");
+    const onSpot = (e) => bento.querySelectorAll(".bento-card").forEach((c) => {
+      const r = c.getBoundingClientRect();
+      c.style.setProperty("--mx", `${e.clientX - r.left}px`);
+      c.style.setProperty("--my", `${e.clientY - r.top}px`);
+    });
+    if (bento && fine) bento.addEventListener("pointermove", onSpot);
 
     // Magnetic contact headline
     const magnet = document.querySelector("[data-magnet]");
@@ -161,6 +182,7 @@ export default function Motion() {
       document.removeEventListener("click", onAnchor);
       window.removeEventListener("load", refresh);
       if (onMove) window.removeEventListener("pointermove", onMove);
+      if (bento && fine) bento.removeEventListener("pointermove", onSpot);
       if (onOver) window.removeEventListener("pointerover", onOver);
       if (magnet && fine) { magnet.removeEventListener("pointermove", onMag); magnet.removeEventListener("pointerleave", offMag); }
     };

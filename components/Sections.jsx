@@ -1,4 +1,5 @@
-import { person, about, projects, path, skills } from "../data/content";
+import { person, about, projects, path, skills, asset } from "../data/content";
+import ContactForm from "./ContactForm";
 
 const fmt = (v, d) => v.toLocaleString("en-US", { minimumFractionDigits: d, maximumFractionDigits: d });
 
@@ -15,7 +16,7 @@ function Hud() {
 export function Nav() {
   return (
     <header className="nav">
-      <a className="brand" href="#top" data-scroll>AH<span>.</span></a>
+      <a className="brand" href="#top" data-scroll aria-label="Asif Habilov, back to top">HA<span>.</span></a>
       <nav className="nav-links" aria-label="Main">
         <a href="#about" data-scroll>About</a>
         <a href="#work" data-scroll>Work</a>
@@ -23,6 +24,9 @@ export function Nav() {
         <a href="#skills" data-scroll>Skills</a>
         <a className="nav-cta" href="#contact" data-scroll>Contact</a>
       </nav>
+      <button className="theme-toggle" type="button" data-theme-toggle aria-label="Switch between light and dark theme">
+        <span className="tt-sun" aria-hidden="true" /><span className="tt-moon" aria-hidden="true" />
+      </button>
     </header>
   );
 }
@@ -31,9 +35,9 @@ export function Hero() {
   return (
     <section className="hero" id="top" aria-label="Introduction">
       <div className="hero-media" data-hero-media>
-        <video autoPlay muted loop playsInline preload="auto" poster="/assets/video/bees-poster.webp"
+        <video autoPlay muted loop playsInline preload="auto" poster={asset("/assets/video/bees-poster.webp")}
           aria-label="Two honeybees on a yellow flower, each followed by its own tracking box from the Bee-A-Hero pipeline.">
-          <source src="/assets/video/bees.mp4" type="video/mp4" />
+          <source src={asset("/assets/video/bees.mp4")} type="video/mp4" />
         </video>
       </div>
       <div className="hero-shade" />
@@ -102,7 +106,7 @@ export function Work() {
           {projects.map((p) => (
             <article className="panel" key={p.id} aria-labelledby={`p-${p.id}`} data-panel>
               <div className="panel-media" data-panel-media>
-                <img src={p.image} alt={p.imageAlt} loading="lazy" data-parallax className={p.fit === "contain" ? "fit-contain" : undefined} />
+                <img src={asset(p.image)} alt={p.imageAlt} loading="lazy" data-parallax className={p.fit === "contain" ? "fit-contain" : undefined} />
                 <Hud />
                 <span className="panel-index" aria-hidden="true">{p.index}</span>
               </div>
@@ -166,17 +170,19 @@ export function Skills() {
           <h2 className="h2" id="skills-title" data-reveal>Skills</h2>
           <p className="lede" data-reveal>What I use in my projects, and what I’m learning now.</p>
         </div>
-        <div className="skill-groups">
-          {skills.groups.map((g) => (
-            <div className="skill-group" key={g.title} data-reveal>
+        <div className="bento" data-spotlight>
+          {skills.groups.map((g, i) => (
+            <article className={`bento-card b${i}`} key={g.title} data-reveal>
+              <span className="bento-no" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
               <h3>{g.title}</h3>
-              <ul>{g.items.map((it) => <li key={it}>{it}</li>)}</ul>
-            </div>
+              <ul className="tags">{g.items.map((it) => <li key={it}>{it}</li>)}</ul>
+            </article>
           ))}
-          <div className="skill-group learning" data-reveal>
+          <article className="bento-card learning" data-reveal>
+            <span className="bento-no" aria-hidden="true">+</span>
             <h3>Learning now</h3>
-            <ul>{skills.learning.map((it) => <li key={it}>{it}</li>)}</ul>
-          </div>
+            <ul className="tags">{skills.learning.map((it) => <li key={it}>{it}</li>)}</ul>
+          </article>
         </div>
       </div>
     </section>
@@ -192,6 +198,7 @@ export function Contact() {
           <span className="line" data-reveal>Let’s build</span>
           <span className="line accent" data-reveal>something</span>
         </a>
+        <ContactForm email={person.email} />
         <div className="contact-row" data-reveal>
           <a href={`mailto:${person.email}`}>{person.email}</a>
           <a href={person.github} target="_blank" rel="noopener">github.com/Manheim666</a>
