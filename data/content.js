@@ -123,14 +123,14 @@ const projectList = [
     fit: "contain",
     imageAlt: "Ten cassava leaf photos, two per class, each correctly classified, next to a confusion matrix of the five classes.",
     summary:
-      "Kaggle Cassava Leaf Disease competition. Identifies four cassava diseases, or a healthy plant, from ordinary phone photos taken by farmers in Uganda. ConvNeXt-Small fine-tuned at 384 px with label smoothing for noisy labels, trained on a Kaggle GPU.",
+      "Kaggle Cassava Leaf Disease competition. Identifies four cassava diseases, or a healthy plant, from ordinary phone photos taken by farmers in Uganda. A ConvNeXt-Small and an EfficientNetV2-S, fine-tuned with label smoothing for noisy labels on a Kaggle GPU, averaged into one prediction.",
     role: "Solo project. The hardest case is bacterial blight versus healthy leaves; the README shows where the model fails.",
     metrics: [
-      { value: 0.896, decimals: 3, label: "Holdout accuracy" },
-      { value: 0.81, decimals: 2, label: "Macro-F1" },
+      { value: 0.899, decimals: 3, label: "Holdout accuracy" },
+      { value: 0.82, decimals: 2, label: "Macro-F1" },
       { value: 5, decimals: 0, label: "Classes" },
     ],
-    stack: ["PyTorch", "timm", "ConvNeXt", "Kaggle GPU"],
+    stack: ["PyTorch", "timm", "ConvNeXt", "EfficientNetV2", "Kaggle GPU"],
     links: [{ label: "Code", href: "https://github.com/Manheim666/cassava-leaf-disease" }],
   },
 ];
