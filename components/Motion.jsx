@@ -106,14 +106,15 @@ export default function Motion() {
             onUpdate: (st) => { if (label) label.textContent = `0${Math.min(panels.length, Math.floor(st.progress * panels.length) + 1)} / 0${panels.length}`; },
           },
         });
-        panels.forEach((p) => {
+        panels.forEach((p, i) => {
           const img = p.querySelector("[data-parallax]");
-          gsap.fromTo(img, { xPercent: -6, scale: 1.12 }, { xPercent: 6, scale: 1.12, ease: "none",
+          gsap.fromTo(img, { xPercent: -4, scale: 1.1 }, { xPercent: 4, scale: 1.1, ease: "none",
             scrollTrigger: { trigger: p, containerAnimation: tween, start: "left right", end: "right left", scrub: true } });
-          gsap.from(p.querySelector("[data-panel-media]"), { clipPath: "inset(0 100% 0 0)", duration: 1.2, ease: "expo.inOut",
-            scrollTrigger: { trigger: p, containerAnimation: tween, start: "left 85%" } });
+          if (i === 0) return; // first panel is already on screen when the pin starts
+          gsap.from(p.querySelector("[data-panel-media]"), { opacity: 0, scale: 0.92, duration: 1, ease: "expo.out",
+            scrollTrigger: { trigger: p, containerAnimation: tween, start: "left 80%" } });
           gsap.from(p.querySelectorAll(".panel-body > *"), { y: 30, opacity: 0, stagger: 0.06, duration: 0.9, ease: "power3.out",
-            scrollTrigger: { trigger: p, containerAnimation: tween, start: "left 70%" } });
+            scrollTrigger: { trigger: p, containerAnimation: tween, start: "left 65%" } });
         });
       });
       mm.add("(max-width: 63.99rem)", () => {

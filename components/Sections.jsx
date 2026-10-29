@@ -1,4 +1,4 @@
-import { person, projects, stats, path, skills } from "../data/content";
+import { person, projects, path, skills } from "../data/content";
 
 const fmt = (v, d) => v.toLocaleString("en-US", { minimumFractionDigits: d, maximumFractionDigits: d });
 
@@ -113,30 +113,13 @@ export function Work() {
   );
 }
 
-export function Stats() {
-  return (
-    <section className="section" aria-label="In numbers">
-      <div className="wrap">
-        <div className="stats-grid">
-          {stats.map((s) => (
-            <div className="stat" key={s.label} data-reveal>
-              <b><span data-count={s.value} data-decimals={s.decimals}>{fmt(s.value, s.decimals)}</span>{s.suffix && <small>{s.suffix}</small>}</b>
-              <span className="stat-label">{s.label}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 export function Path() {
   return (
     <section className="section" id="path" aria-labelledby="path-title" style={{ paddingTop: 0 }}>
       <div className="wrap">
         <div className="section-head">
           <h2 className="h2" id="path-title" data-reveal>Path</h2>
-          <p className="lede" data-reveal>Degree, three AI programmes in 2026 and a government data internship.</p>
+          <p className="lede" data-reveal>Education, training and experience.</p>
         </div>
         <div className="timeline" data-timeline>
           <span className="timeline-line" aria-hidden="true"><i data-timeline-fill /></span>

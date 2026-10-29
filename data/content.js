@@ -77,23 +77,16 @@ export const projects = [
   },
 ];
 
-export const stats = [
-  { value: 95.25, decimals: 2, suffix: "/100", label: "University average after three years" },
-  { value: 151545, decimals: 0, suffix: "", label: "Images in the dataset I built for Bee-A-Hero" },
-  { value: 0.989, decimals: 3, suffix: "", label: "Macro-F1 on fastener defects" },
-  { value: 58, decimals: 0, suffix: "", label: "Ironhack labs and assessments completed" },
-];
-
 export const path = [
   {
     when: "2023 – 2027",
     title: "BSc Computer Science, Baku State University",
-    text: "English-taught, state-funded. Average 95.25/100. Graduating July 2027.",
+    text: "English-taught, state-funded place. GPA 95.25/100. Graduating July 2027.",
   },
   {
     when: "Feb – Jul 2026",
     title: "Data + AI Bootcamp, Ironhack",
-    text: "20 weeks: statistics, ML, deep learning, MLOps, LLMs and RAG.",
+    text: "Statistics, machine learning, deep learning, MLOps, LLMs and RAG.",
   },
   {
     when: "Feb – Jun 2026",

@@ -1,5 +1,5 @@
 import Motion from "../components/Motion";
-import { Nav, Hero, Marquee, Work, Stats, Path, Skills, Contact, Footer } from "../components/Sections";
+import { Nav, Hero, Marquee, Work, Path, Skills, Contact, Footer } from "../components/Sections";
 
 export default function Page() {
   return (
@@ -13,7 +13,6 @@ export default function Page() {
         <Hero />
         <Marquee />
         <Work />
-        <Stats />
         <Path />
         <Skills />
         <Contact />
