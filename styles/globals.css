@@ -149,6 +149,17 @@ a { color: inherit; }
 .scroll-cue { position: absolute; left: 50%; bottom: 1rem; width: 1px; height: 3rem; background: linear-gradient(var(--text), transparent); opacity: .5; }
 @media (max-width: 56rem) { .scroll-cue { display: none; } }
 
+/* ---------- About ---------- */
+.about-grid { display: grid; gap: clamp(1rem, 3vw, 2.5rem); }
+.about-body { display: grid; gap: clamp(2rem, 4vw, 4rem); }
+@media (min-width: 64rem) { .about-body { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); align-items: start; } .about-body .facts { margin-top: 0; grid-template-columns: 1fr; } }
+.about-text p { font-size: clamp(1.2rem, 1.02rem + .75vw, 1.75rem); line-height: 1.5; margin: 0 0 1.4rem; max-width: 40ch; color: #d7dde4; }
+.about-text p:first-child { color: var(--text); }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); margin: clamp(2rem, 4vw, 3rem) 0 0; border-top: 1px solid var(--line); }
+.fact { padding: 1.1rem 1.2rem 1.1rem 0; border-bottom: 1px solid var(--line); }
+.fact dt { color: var(--accent); font-size: .95rem; font-weight: 600; margin-bottom: .3rem; }
+.fact dd { margin: 0; font-size: clamp(1.05rem, 1rem + .3vw, 1.25rem); }
+
 /* ---------- Marquee ---------- */
 .marquee { border-block: 1px solid var(--line); padding: 1.3rem 0; overflow: hidden; background: var(--bg); }
 .marquee-row { display: flex; width: max-content; gap: 0; will-change: transform; }

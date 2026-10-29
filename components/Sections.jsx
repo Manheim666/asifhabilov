@@ -1,4 +1,4 @@
-import { person, projects, path, skills } from "../data/content";
+import { person, about, projects, path, skills } from "../data/content";
 
 const fmt = (v, d) => v.toLocaleString("en-US", { minimumFractionDigits: d, maximumFractionDigits: d });
 
@@ -17,6 +17,7 @@ export function Nav() {
     <header className="nav">
       <a className="brand" href="#top" data-scroll>AH<span>.</span></a>
       <nav className="nav-links" aria-label="Main">
+        <a href="#about" data-scroll>About</a>
         <a href="#work" data-scroll>Work</a>
         <a href="#path" data-scroll>Path</a>
         <a href="#skills" data-scroll>Skills</a>
@@ -54,6 +55,26 @@ export function Hero() {
         </div>
       </div>
       <span className="scroll-cue" aria-hidden="true" />
+    </section>
+  );
+}
+
+export function About() {
+  return (
+    <section className="section about" id="about" aria-labelledby="about-title">
+      <div className="wrap about-grid">
+        <h2 className="h2" id="about-title" data-reveal>About</h2>
+        <div className="about-body">
+          <div className="about-text">
+            {about.paragraphs.map((p, i) => <p key={i} data-reveal>{p}</p>)}
+          </div>
+          <dl className="facts" data-reveal>
+            {about.facts.map((f) => (
+              <div className="fact" key={f.k}><dt>{f.k}</dt><dd>{f.v}</dd></div>
+            ))}
+          </dl>
+        </div>
+      </div>
     </section>
   );
 }

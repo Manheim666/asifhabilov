@@ -1,5 +1,5 @@
 import Motion from "../components/Motion";
-import { Nav, Hero, Marquee, Work, Path, Skills, Contact, Footer } from "../components/Sections";
+import { Nav, Hero, About, Marquee, Work, Path, Skills, Contact, Footer } from "../components/Sections";
 
 export default function Page() {
   return (
@@ -11,6 +11,7 @@ export default function Page() {
       <Nav />
       <main id="main">
         <Hero />
+        <About />
         <Marquee />
         <Work />
         <Path />
