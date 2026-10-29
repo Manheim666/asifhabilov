@@ -134,7 +134,7 @@ export default function Motion() {
       const xTo = gsap.quickTo(cursor, "x", { duration: 0.35, ease: "power3" });
       const yTo = gsap.quickTo(cursor, "y", { duration: 0.35, ease: "power3" });
       onMove = (e) => { xTo(e.clientX); yTo(e.clientY); cursor.style.opacity = "1"; };
-      onOver = (e) => cursor.classList.toggle("is-link", !!e.target.closest("a, button, .skill-cloud li"));
+      onOver = (e) => cursor.classList.toggle("is-link", !!e.target.closest("a, button, .skill-group"));
       window.addEventListener("pointermove", onMove);
       window.addEventListener("pointerover", onOver);
     }

@@ -228,15 +228,24 @@ a { color: inherit; }
 .tl-item p { margin: 0; color: var(--muted); }
 
 /* ---------- Skills ---------- */
-.skills-wrap { display: grid; gap: 2.5rem; }
-@media (min-width: 56rem) { .skills-wrap { grid-template-columns: 1fr 2fr; } }
-.skill-cloud { display: flex; flex-wrap: wrap; gap: .6rem; list-style: none; padding: 0; margin: 0; }
-.skill-cloud li { border: 1px solid var(--line-strong); padding: .75rem 1.3rem; font-weight: 600; font-size: 1.1rem; transition: background .35s var(--ease), color .35s var(--ease), border-color .35s var(--ease); }
-.skill-cloud li:hover { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
-.skill-cloud.learning li { border-style: dashed; color: var(--muted); font-weight: 400; }
-.skill-label { color: var(--muted); font-size: 1.05rem; margin: 0 0 1rem; }
+.skill-groups { display: grid; grid-template-columns: 1fr; border-top: 1px solid var(--line); }
+@media (min-width: 48rem) { .skill-groups { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 80rem) { .skill-groups { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.skill-group { position: relative; padding: clamp(1.5rem, 3vw, 2.4rem) clamp(0rem, 2vw, 2rem) clamp(1.5rem, 3vw, 2.4rem) 0; border-bottom: 1px solid var(--line); transition: background .5s var(--ease); }
+@media (min-width: 48rem) { .skill-group { padding-left: clamp(1rem, 2vw, 2rem); border-left: 1px solid var(--line); } }
+.skill-group::before { content: ""; position: absolute; left: 0; top: -1px; height: 2px; width: 0; background: var(--accent); transition: width .6s var(--ease); }
+.skill-group:hover::before { width: 100%; }
+.skill-group:hover { background: var(--bg-2); }
+.skill-group h3 { font-stretch: 112%; font-weight: 700; font-size: clamp(1.3rem, 1.1rem + .8vw, 1.9rem); margin: 0 0 1rem; color: var(--text); }
+.skill-group ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .55rem; }
+.skill-group li { font-size: clamp(1.02rem, 1rem + .25vw, 1.2rem); color: #c9d0d8; padding-left: 1.3rem; position: relative; }
+.skill-group li::before { content: ""; position: absolute; left: 0; top: .62em; width: .5rem; height: .5rem; border: 1.5px solid var(--accent); }
+.skill-group.learning li { color: var(--muted); }
+.skill-group.learning li::before { border-style: dashed; border-color: var(--track); }
+.skill-group.learning h3 { color: var(--track); }
 
 /* ---------- Contact ---------- */
+.skill-label { color: var(--muted); font-size: clamp(1rem, .95rem + .3vw, 1.2rem); margin: 0 0 1rem; }
 .contact { position: relative; padding-block: clamp(6rem, 14vw, 12rem) clamp(3rem, 6vw, 5rem); overflow: hidden; }
 .contact-big { display: block; font-size: clamp(2.6rem, 10vw, 10rem); text-decoration: none; }
 .contact-big .line { display: block; overflow: hidden; }

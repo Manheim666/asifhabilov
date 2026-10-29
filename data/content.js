@@ -27,10 +27,10 @@ export const about = {
     { k: "University", v: "Baku State University" },
     { k: "GPA", v: "95.25 / 100" },
     { k: "Graduation", v: "July 2027" },
-    { k: "Based in", v: "Baku, Azerbaijan · open to remote" },
+    { k: "Based in", v: "Baku, Azerbaijan" },
     { k: "Languages", v: "Azerbaijani (native), English (C1)" },
     { k: "Interests", v: "Computer vision, applied ML, environmental and agricultural data" },
-    { k: "Looking for", v: "Internships and junior roles in data science, ML or computer vision" },
+    { k: "Open to", v: "Internships and junior roles, remote or Baku" },
   ],
 };
 
@@ -99,7 +99,7 @@ export const path = [
   {
     when: "2023 – 2027",
     title: "BSc Computer Science, Baku State University",
-    text: "English-taught, state-funded place. GPA 95.25/100. Graduating July 2027.",
+    text: "State-funded place. GPA 95.25/100. Graduating July 2027.",
   },
   {
     when: "Feb – Jul 2026",
@@ -124,6 +124,13 @@ export const path = [
 ];
 
 export const skills = {
-  core: ["Python", "PyTorch", "YOLO", "OpenCV", "scikit-learn", "CatBoost", "XGBoost", "LightGBM", "Optuna", "pandas", "NumPy"],
-  learning: ["SHAP and explainable AI", "RAG and LLM applications", "SQL", "TensorFlow"],
+  // Short names for the scrolling band under the About section
+  marquee: ["Python", "SQL", "PyTorch", "Computer vision", "Gradient boosting", "OpenCV", "YOLO", "scikit-learn", "Forecasting", "Deep learning"],
+  groups: [
+    { title: "Programming", items: ["Python", "SQL"] },
+    { title: "Machine learning", items: ["Supervised and unsupervised learning", "Gradient boosting models (XGBoost, LightGBM, CatBoost)", "Random forests and ensembles", "Time-series forecasting", "Hyperparameter tuning with Optuna"] },
+    { title: "Deep learning and vision", items: ["PyTorch", "CNNs and RNNs", "Object detection and tracking (YOLO, BoT-SORT)", "OpenCV image processing", "Transfer learning"] },
+    { title: "Data and visualisation", items: ["pandas and NumPy", "scikit-learn", "Plotly and Folium", "Matplotlib"] },
+  ],
+  learning: ["SHAP and explainable AI", "RAG and LLM applications", "TensorFlow"],
 };

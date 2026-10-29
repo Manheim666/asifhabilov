@@ -80,7 +80,7 @@ export function About() {
 }
 
 export function Marquee() {
-  const row = [...skills.core, ...skills.core];
+  const row = [...skills.marquee, ...skills.marquee];
   return (
     <div className="marquee" aria-hidden="true">
       <div className="marquee-row" data-marquee="1">{row.map((s, i) => <span key={i}>{s}</span>)}</div>
@@ -161,13 +161,22 @@ export function Path() {
 export function Skills() {
   return (
     <section className="section" id="skills" aria-labelledby="skills-title" style={{ paddingTop: 0 }}>
-      <div className="wrap skills-wrap">
-        <h2 className="h2" id="skills-title" data-reveal>Tools</h2>
-        <div>
-          <p className="skill-label" data-reveal>Used in my projects</p>
-          <ul className="skill-cloud" data-reveal>{skills.core.map((s) => <li key={s}>{s}</li>)}</ul>
-          <p className="skill-label" style={{ marginTop: "2rem" }} data-reveal>Practising now</p>
-          <ul className="skill-cloud learning" data-reveal>{skills.learning.map((s) => <li key={s}>{s}</li>)}</ul>
+      <div className="wrap">
+        <div className="section-head">
+          <h2 className="h2" id="skills-title" data-reveal>Skills</h2>
+          <p className="lede" data-reveal>What I use in my projects, and what I’m learning now.</p>
+        </div>
+        <div className="skill-groups">
+          {skills.groups.map((g) => (
+            <div className="skill-group" key={g.title} data-reveal>
+              <h3>{g.title}</h3>
+              <ul>{g.items.map((it) => <li key={it}>{it}</li>)}</ul>
+            </div>
+          ))}
+          <div className="skill-group learning" data-reveal>
+            <h3>Learning now</h3>
+            <ul>{skills.learning.map((it) => <li key={it}>{it}</li>)}</ul>
+          </div>
         </div>
       </div>
     </section>
