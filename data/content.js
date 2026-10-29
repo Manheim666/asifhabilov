@@ -20,10 +20,10 @@ export const about = {
   paragraphs: [
     "I’m a final-year Computer Science student at Baku State University, in the Faculty of Applied Mathematics and Cybernetics. I’m drawn to problems where the data comes from the real world, from cameras, satellites and field sensors, and has to be understood and cleaned before any model can use it.",
     "My main interests are computer vision and applied machine learning, especially for environmental and agricultural problems. I like the careful parts of the work: validating honestly, choosing thresholds that match the real cost of a mistake, and writing down where a model still fails.",
-    "Away from the code, I work well in small teams. Two of my main projects were team efforts, and during my bootcamp I often stayed after class to help classmates find bugs in their work. A summer of IT support at a government ministry taught me to explain technical problems simply to non-technical colleagues.",
+    "Outside of tech, I make music. I founded Harmony, a rock band, and play rhythm guitar in it.",
   ],
   facts: [
-    { k: "Major", v: "BSc Computer Science (English-taught)" },
+    { k: "Major", v: "BSc Computer Science" },
     { k: "University", v: "Baku State University" },
     { k: "GPA", v: "95.25 / 100" },
     { k: "Graduation", v: "July 2027" },
@@ -124,6 +124,6 @@ export const path = [
 ];
 
 export const skills = {
-  core: ["Python", "PyTorch", "YOLO", "OpenCV", "scikit-learn", "CatBoost", "XGBoost", "Optuna", "SHAP", "pandas", "FastAPI", "Docker", "Git", "Linux"],
-  learning: ["SQL window functions", "Kubernetes", "TensorFlow"],
+  core: ["Python", "PyTorch", "YOLO", "OpenCV", "scikit-learn", "CatBoost", "XGBoost", "LightGBM", "Optuna", "pandas", "NumPy"],
+  learning: ["SHAP and explainable AI", "RAG and LLM applications", "SQL", "TensorFlow"],
 };
