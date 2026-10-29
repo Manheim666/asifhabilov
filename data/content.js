@@ -14,7 +14,7 @@ export const person = {
   github: "https://github.com/Manheim666",
   // linkedin: "https://www.linkedin.com/in/YOUR-HANDLE",
   status: "Open to internships and junior roles, remote or Baku",
-  // Free key from https://web3forms.com (sent to this inbox). Empty = form opens the visitor's email app instead.
+  // Optional free key from https://web3forms.com (sent to this inbox). Empty = FormSubmit delivers to the email above.
   web3formsKey: "",
 };
 

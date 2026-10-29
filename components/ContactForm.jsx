@@ -1,7 +1,7 @@
 "use client";
 
-// Contact form for a static site. With a Web3Forms access key the message is delivered by Web3Forms;
-// without a key, or if delivery fails, the visitor's email app opens with everything pre-filled.
+// Contact form for a static site. Messages are delivered by Web3Forms when an access key is set,
+// otherwise by FormSubmit; if delivery fails, the visitor's email app opens with everything pre-filled.
 import { useState } from "react";
 
 export default function ContactForm({ email, formKey }) {
@@ -19,16 +19,19 @@ export default function ContactForm({ email, formKey }) {
     const form = e.currentTarget;
     const data = Object.fromEntries(new FormData(form));
     if (data._honey) return; // bots fill the hidden field
-    if (!formKey) return openMail(data);
     setState("sending");
     try {
-      const res = await fetch("https://api.web3forms.com/submit", {
+      const subject = `Portfolio message from ${data.name}`;
+      const [url, payload] = formKey
+        ? ["https://api.web3forms.com/submit", { access_key: formKey, subject, from_name: data.name, email: data.email, message: data.message }]
+        : [`https://formsubmit.co/ajax/${email}`, { _subject: subject, _template: "table", _captcha: "false", name: data.name, email: data.email, message: data.message }];
+      const res = await fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({ access_key: formKey, subject: `Portfolio message from ${data.name}`, from_name: data.name, email: data.email, message: data.message }),
+        body: JSON.stringify(payload),
       });
       const json = await res.json().catch(() => ({}));
-      if (!res.ok || json.success === false) throw new Error("send failed");
+      if (!res.ok || String(json.success) !== "true") throw new Error("send failed");
       setState("sent");
       form.reset();
     } catch {
