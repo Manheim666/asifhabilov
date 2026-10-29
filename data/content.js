@@ -112,6 +112,25 @@ export const projects = [
     stack: ["LightGBM", "XGBoost", "CatBoost", "Polars", "scikit-learn"],
     links: [{ label: "Code", href: "https://github.com/Manheim666/problematic-internet-use" }],
   },
+  {
+    id: "cassava",
+    index: "05",
+    title: "Cassava disease",
+    tagline: "Diagnosing crop disease from farmers' phone photos",
+    image: "/assets/img/cassava-results.webp",
+    fit: "contain",
+    imageAlt: "Ten cassava leaf photos, two per class, each correctly classified, next to a confusion matrix of the five classes.",
+    summary:
+      "Kaggle Cassava Leaf Disease competition. Identifies four cassava diseases, or a healthy plant, from ordinary phone photos taken by farmers in Uganda. ConvNeXt-Small fine-tuned at 384 px with label smoothing for noisy labels, trained on a Kaggle GPU.",
+    role: "Solo project. The hardest case is bacterial blight versus healthy leaves; the README shows where the model fails.",
+    metrics: [
+      { value: 0.896, decimals: 3, label: "Holdout accuracy" },
+      { value: 0.81, decimals: 2, label: "Macro-F1" },
+      { value: 5, decimals: 0, label: "Classes" },
+    ],
+    stack: ["PyTorch", "timm", "ConvNeXt", "Kaggle GPU"],
+    links: [{ label: "Code", href: "https://github.com/Manheim666/cassava-leaf-disease" }],
+  },
 ];
 
 export const path = [

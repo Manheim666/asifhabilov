@@ -97,7 +97,7 @@ export function Work() {
         <p className="lede" data-reveal>Each project links to its code and reports the numbers from its own evaluation.</p>
       </div>
       <div className="work-pin" data-work-pin>
-        <div className="work-count" aria-hidden="true"><span>Scroll</span><span data-work-progress>01 / 04</span></div>
+        <div className="work-count" aria-hidden="true"><span>Scroll</span><span data-work-progress>01 / 05</span></div>
         <div className="work-track" data-work-track>
           {projects.map((p) => (
             <article className="panel" key={p.id} aria-labelledby={`p-${p.id}`} data-panel>
