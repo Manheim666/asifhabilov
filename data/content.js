@@ -93,6 +93,25 @@ export const projects = [
     stack: ["PyTorch", "timm", "OpenCV", "scikit-learn"],
     links: [{ label: "Code", href: "https://github.com/Manheim666/Screw" }],
   },
+  {
+    id: "cmi",
+    index: "04",
+    title: "Internet-use risk",
+    tagline: "Screening children for problematic internet use",
+    image: "/assets/img/cmi-results.webp",
+    fit: "contain",
+    imageAlt: "Confusion matrix of predicted versus true severity, next to a bar chart of the most important features: internet hours by age, age and sleep disturbance score.",
+    summary:
+      "Kaggle Child Mind Institute competition. Predicts a child's severity index from physical, fitness, sleep and screen-time data, so screening doesn't depend on a long clinical questionnaire. A LightGBM, XGBoost and CatBoost ensemble with cut-offs tuned for quadratic weighted kappa.",
+    role: "Solo project. Wrist-sensor summaries were tested and did not improve validation, so the simpler model was kept.",
+    metrics: [
+      { value: 0.452, decimals: 3, label: "QWK, nested CV" },
+      { value: 2736, decimals: 0, label: "Children" },
+      { value: 3, decimals: 0, label: "Boosting models" },
+    ],
+    stack: ["LightGBM", "XGBoost", "CatBoost", "Polars", "scikit-learn"],
+    links: [{ label: "Code", href: "https://github.com/Manheim666/problematic-internet-use" }],
+  },
 ];
 
 export const path = [

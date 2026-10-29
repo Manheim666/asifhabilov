@@ -108,7 +108,7 @@ export default function Motion() {
         });
         panels.forEach((p, i) => {
           const img = p.querySelector("[data-parallax]");
-          gsap.fromTo(img, { xPercent: -4, scale: 1.1 }, { xPercent: 4, scale: 1.1, ease: "none",
+          if (!img.classList.contains("fit-contain")) gsap.fromTo(img, { xPercent: -4, scale: 1.1 }, { xPercent: 4, scale: 1.1, ease: "none",
             scrollTrigger: { trigger: p, containerAnimation: tween, start: "left right", end: "right left", scrub: true } });
           if (i === 0) return; // first panel is already on screen when the pin starts
           gsap.from(p.querySelector("[data-panel-media]"), { opacity: 0, scale: 0.92, duration: 1, ease: "expo.out",
@@ -121,7 +121,8 @@ export default function Motion() {
         gsap.utils.toArray("[data-panel]").forEach((p) => {
           gsap.from(p.querySelector("[data-panel-media]"), { opacity: 0, scale: 0.94, duration: 1, ease: "expo.out", scrollTrigger: { trigger: p, start: "top 90%" } });
           gsap.from(p.querySelectorAll(".panel-body > *"), { y: 24, opacity: 0, stagger: 0.05, duration: 0.8, ease: "power3.out", scrollTrigger: { trigger: p, start: "top 70%" } });
-          gsap.fromTo(p.querySelector("[data-parallax]"), { yPercent: -8 }, { yPercent: 0, ease: "none", scrollTrigger: { trigger: p, start: "top bottom", end: "bottom top", scrub: true } });
+          const pimg = p.querySelector("[data-parallax]");
+          if (!pimg.classList.contains("fit-contain")) gsap.fromTo(pimg, { yPercent: -8 }, { yPercent: 0, ease: "none", scrollTrigger: { trigger: p, start: "top bottom", end: "bottom top", scrub: true } });
         });
       });
     });

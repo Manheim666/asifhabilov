@@ -94,15 +94,15 @@ export function Work() {
     <section className="work" id="work" aria-labelledby="work-title">
       <div className="wrap section-head" style={{ paddingTop: "clamp(5rem, 12vw, 9rem)" }}>
         <h2 className="h2" id="work-title" data-reveal>Selected<br />work</h2>
-        <p className="lede" data-reveal>Three projects, each with code and the numbers its own evaluation reports.</p>
+        <p className="lede" data-reveal>Each project links to its code and reports the numbers from its own evaluation.</p>
       </div>
       <div className="work-pin" data-work-pin>
-        <div className="work-count" aria-hidden="true"><span>Scroll</span><span data-work-progress>01 / 03</span></div>
+        <div className="work-count" aria-hidden="true"><span>Scroll</span><span data-work-progress>01 / 04</span></div>
         <div className="work-track" data-work-track>
           {projects.map((p) => (
             <article className="panel" key={p.id} aria-labelledby={`p-${p.id}`} data-panel>
               <div className="panel-media" data-panel-media>
-                <img src={p.image} alt={p.imageAlt} loading="lazy" data-parallax />
+                <img src={p.image} alt={p.imageAlt} loading="lazy" data-parallax className={p.fit === "contain" ? "fit-contain" : undefined} />
                 <Hud />
                 <span className="panel-index" aria-hidden="true">{p.index}</span>
               </div>
