@@ -276,11 +276,12 @@ a { color: inherit; }
 
 /* ---------- Light theme (visitor choice, remembered) ---------- */
 :root[data-theme="light"] {
-  --bg: #f4f2ee; --bg-2: #ebe8e2; --bg-3: #e2ded6;
-  --text: #15191e; --text-2: #3a434d; --muted: #5d6874;
-  --line: rgba(21, 25, 30, 0.12); --line-strong: rgba(21, 25, 30, 0.28);
-  --accent: #c98a00; --accent-ink: #fffaf0; --track: #0f8f84;
-  --nav-bg: rgba(244, 242, 238, 0.72); --card: rgba(21, 25, 30, 0.03);
+  /* cool survey-paper neutrals; the tracking teal leads, amber is kept for small highlights */
+  --bg: #f5f7f8; --bg-2: #eaeef1; --bg-3: #dde4e9;
+  --text: #0f1a23; --text-2: #34414d; --muted: #586674;
+  --line: rgba(15, 26, 35, 0.11); --line-strong: rgba(15, 26, 35, 0.26);
+  --accent: #0a7069; --accent-ink: #ffffff; --track: #b87a00;
+  --nav-bg: rgba(245, 247, 248, 0.78); --card: #ffffff;
   color-scheme: light;
 }
 /* the hero always sits on dark video, so it keeps dark-theme colours */
