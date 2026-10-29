@@ -15,7 +15,7 @@ export const person = {
   // linkedin: "https://www.linkedin.com/in/YOUR-HANDLE",
   status: "Open to internships and junior roles, remote or Baku",
   // Optional free key from https://web3forms.com (sent to this inbox). Empty = FormSubmit delivers to the email above.
-  web3formsKey: "",
+  web3formsKey: "c03f8a1a-0b3c-4e07-a114-fd3447ded8b6",
 };
 
 export const about = {
