@@ -1,81 +1,53 @@
-# Asif Habilov — portfolio website
+# Asif Habilov — portfolio (Next.js)
 
-This is a static site made of plain HTML, CSS and a few lines of JavaScript. It has no build step and no dependencies, so it runs on any static host.
+A static Next.js site with smooth scrolling (Lenis) and scroll-driven animation (GSAP + ScrollTrigger). It exports to plain HTML in `out/` and is hosted free on GitHub Pages.
 
 ```
-Asif_Portfolio/
-├── index.html            all page content (edit text here)
-├── 404.html              "page not found" page for GitHub Pages
-├── .nojekyll             tells GitHub Pages to serve files as-is
-├── assets/
-│   ├── styles.css        colours (top of file), type, layout
-│   ├── main.js           mobile menu + footer year
-│   ├── favicon.svg
-│   ├── fonts/            Schibsted Grotesk (SIL Open Font License, see OFL.txt)
-│   └── img/              project images (WebP, real outputs from the repos)
-└── scripts/check.mjs     automated QA (console errors, broken images/links, overflow, mobile menu)
+data/content.js        ← ALL text, projects, numbers, links (edit this)
+components/Sections.jsx  page sections (markup)
+components/Motion.jsx    all animation: intro, hero, horizontal work scroller, counters, marquee, cursor
+styles/globals.css       colours (top of file), type, layout
+app/layout.js            fonts, page title, social preview
+public/assets/           images (WebP) and the hero video (real Bee-A-Hero tracking output)
+scripts/check.mjs        browser QA (errors, broken images/links, overflow, reduced motion)
+.github/workflows/deploy.yml  builds and deploys on every push to main
 ```
 
-## Run it locally
-
+## Run and edit
 ```bash
 cd ~/Desktop/Asif_Portfolio
-python3 -m http.server 8000
-# open http://localhost:8000
+npm install          # first time only
+npm run dev          # http://localhost:3000, live reload
 ```
+- **Change text or numbers:** edit `data/content.js`. Keep every metric tied to a repository you can show.
+- **Add a project:** add an object to `projects` and put a WebP image (around 1600 px wide) in `public/assets/img/`.
+- **Add LinkedIn:** un-comment `linkedin` in `data/content.js`. It appears in Contact automatically.
+- **Colours:** the `:root` variables in `styles/globals.css`.
 
-## Edit content
-
-- **Text:** everything is in `index.html`. Each section is marked with a comment (`<!-- Selected projects -->` and so on).
-- **Add a project:** copy one `<article class="project">…</article>` block, change the text and image, and keep the metrics to numbers your repository actually reports.
-- **Images:** export as WebP around 1200–1600 px wide (`python3 -c "from PIL import Image; Image.open('in.png').save('out.webp', quality=80)"`), put them in `assets/img/`, and set real `width` / `height` and an `alt` text.
-- **Colours:** the variables at the top of `assets/styles.css`. The dark-mode values are set twice: once in the `prefers-color-scheme` block and once in `[data-theme="dark"]`.
-- **LinkedIn:** when you have a profile URL, un-comment the LinkedIn line in the Contact section.
-
-## Test before publishing
-
+## Build and test
 ```bash
-cd ~/Desktop/Asif_Portfolio && python3 -m http.server 8000 &
-cd ~/Desktop/Asif_Career_Kit/.tools          # Playwright is installed here
-cp ~/Desktop/Asif_Portfolio/scripts/check.mjs . && node check.mjs http://localhost:8000/
+npm run build                              # writes the static site to out/
+(cd out && python3 -m http.server 4173)    # serve it
+cd ~/Desktop/Asif_Career_Kit/.tools && cp ~/Desktop/Asif_Portfolio/scripts/check.mjs . && node check.mjs http://localhost:4173/
 ```
+`check.mjs` loads the page at desktop, tablet, mobile and reduced-motion settings. It prints `All checks passed` when there are no console errors, failed requests, broken images, hidden content, horizontal overflow or dead links.
 
-It prints `All checks passed` when there are no console errors, failed requests, broken images, dead in-page anchors, horizontal scrolling, or broken external links, and when the mobile menu works. Screenshots are saved as `shot-*.png`.
-
-## Deploy (free): GitHub Pages user site
-
-Your Wildfire dashboard already lives at `https://manheim666.github.io/Wildfire/`. A **user site** repository named `Manheim666.github.io` serves the root address `https://manheim666.github.io/`, and it does **not** break `/Wildfire/`, because project sites keep working under their own paths.
-
-1. Review the page locally first. Nothing has been pushed anywhere yet.
-2. Create a **public** repository named exactly `Manheim666.github.io` on GitHub (no README).
-3. Push:
+## Deploy (free)
+1. Create a **public** GitHub repository named exactly `Manheim666.github.io`.
+2. Push:
    ```bash
-   cd ~/Desktop/Asif_Portfolio
-   git add -A && git commit -m "Portfolio site"
-   git branch -M main
    git remote add origin https://github.com/Manheim666/Manheim666.github.io.git
    git push -u origin main
    ```
-4. On GitHub, go to **Settings → Pages → Build and deployment → Source: Deploy from a branch**, then choose **Branch `main`, folder `/ (root)`**.
-5. After 1–2 minutes, open `https://manheim666.github.io/`.
+3. On GitHub, open **Settings → Pages → Source** and choose **GitHub Actions**. The included workflow builds and deploys automatically on every push.
+4. The site goes live at `https://manheim666.github.io/`, and the Wildfire dashboard keeps working at `/Wildfire/`.
 
-**Cost:** GitHub Pages is free for public repositories. The site uses no paid services.
+**Cost:** free. A custom domain is optional (about USD 10–15 a year). Add a `public/CNAME` file containing the domain, then set its DNS records as described in GitHub's "custom domain" docs.
 
-## Optional custom domain
-
-- A domain such as `asifhabilov.dev` or `.com` costs about USD 10–15 per year. Check the current price at a registrar like Cloudflare Registrar, Porkbun or Namecheap. This is optional, and the github.io address is fine for applications.
-- To connect it: add a `CNAME` file containing the domain, create DNS `A` records pointing to GitHub's Pages IPs (listed in GitHub's documentation under "Managing a custom domain for your GitHub Pages site"), then tick **Enforce HTTPS**.
-
-## Alternatives
-
-Netlify and Cloudflare Pages are also free. Drag the folder onto their dashboard, or connect the GitHub repository.
-
-## Maintenance
-
-- After each new project or result, update its block, run the check script, then commit and push.
-- Re-check the numbers whenever you retrain a model.
-- Every 3 months, check that the external links still work (the check script does this).
+## Motion and accessibility
+- Visitors with "reduce motion" turned on get a static page: no intro, no smooth scroll, everything visible.
+- Without JavaScript, all content is still rendered (the HTML is static).
+- The bracket cursor only appears on mouse or trackpad devices.
 
 ## Privacy
-
-The page shows only your email, GitHub and city. Your phone number, ID documents, transcripts and certificate scans are deliberately **not** published.
+The page shows only your email, GitHub and city. Your phone number, ID documents and certificate scans are not published.

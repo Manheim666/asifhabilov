@@ -1,0 +1,25 @@
+import Motion from "../components/Motion";
+import { Nav, Hero, Marquee, Work, Stats, Path, Skills, Contact, Footer } from "../components/Sections";
+
+export default function Page() {
+  return (
+    <>
+      <a className="skip" href="#main">Skip to content</a>
+      <div className="intro" aria-hidden="true"><span className="intro-count">000</span><span className="intro-bar" /></div>
+      <div className="progress" aria-hidden="true" />
+      <div className="cursor" aria-hidden="true" />
+      <Nav />
+      <main id="main">
+        <Hero />
+        <Marquee />
+        <Work />
+        <Stats />
+        <Path />
+        <Skills />
+        <Contact />
+      </main>
+      <Footer />
+      <Motion />
+    </>
+  );
+}
