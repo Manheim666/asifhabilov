@@ -112,7 +112,10 @@ const projectList = [
       { value: 3, decimals: 0, label: "Boosting models" },
     ],
     stack: ["LightGBM", "XGBoost", "CatBoost", "Polars", "scikit-learn"],
-    links: [{ label: "Code", href: "https://github.com/Manheim666/problematic-internet-use" }],
+    links: [
+      { label: "Code", href: "https://github.com/Manheim666/problematic-internet-use" },
+      { label: "Notebook", href: "https://github.com/Manheim666/problematic-internet-use/blob/master/walkthrough.ipynb" },
+    ],
   },
   {
     id: "cassava",
@@ -131,7 +134,10 @@ const projectList = [
       { value: 5, decimals: 0, label: "Classes" },
     ],
     stack: ["PyTorch", "timm", "ConvNeXt", "EfficientNetV2", "Kaggle GPU"],
-    links: [{ label: "Code", href: "https://github.com/Manheim666/cassava-leaf-disease" }],
+    links: [
+      { label: "Code", href: "https://github.com/Manheim666/cassava-leaf-disease" },
+      { label: "Notebook", href: "https://github.com/Manheim666/cassava-leaf-disease/blob/master/walkthrough.ipynb" },
+    ],
   },
   {
     id: "wheat",
@@ -150,7 +156,10 @@ const projectList = [
       { value: 147793, decimals: 0, label: "Labelled heads" },
     ],
     stack: ["PyTorch", "YOLO26", "Ultralytics", "OpenCV", "Kaggle GPU"],
-    links: [{ label: "Code", href: "https://github.com/Manheim666/global-wheat-detection" }],
+    links: [
+      { label: "Code", href: "https://github.com/Manheim666/global-wheat-detection" },
+      { label: "Notebook", href: "https://github.com/Manheim666/global-wheat-detection/blob/main/walkthrough.ipynb" },
+    ],
   },
   {
     id: "dota",
@@ -169,7 +178,10 @@ const projectList = [
       { value: 55653, decimals: 0, label: "Val objects scored" },
     ],
     stack: ["PyTorch", "YOLO26-OBB", "Ultralytics", "OpenCV", "Kaggle GPU"],
-    links: [{ label: "Code", href: "https://github.com/Manheim666/DOTA-Object-Detection" }],
+    links: [
+      { label: "Code", href: "https://github.com/Manheim666/DOTA-Object-Detection" },
+      { label: "Notebook", href: "https://github.com/Manheim666/DOTA-Object-Detection/blob/main/walkthrough.ipynb" },
+    ],
   },
 ];
 
