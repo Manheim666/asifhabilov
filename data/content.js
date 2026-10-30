@@ -152,6 +152,25 @@ const projectList = [
     stack: ["PyTorch", "YOLO26", "Ultralytics", "OpenCV", "Kaggle GPU"],
     links: [{ label: "Code", href: "https://github.com/Manheim666/global-wheat-detection" }],
   },
+  {
+    id: "dota",
+    index: "07",
+    title: "Aerial objects",
+    tagline: "Rotated boxes around ships, planes and vehicles in satellite images",
+    image: "/assets/img/dota-obb.webp",
+    fit: "contain",
+    imageAlt: "Two aerial images with rotated boxes: a marina where every moored boat and pier is outlined, and a sports club with tennis courts, a pool and parked cars.",
+    summary:
+      "DOTA-v1 oriented object detection. Finds 15 kinds of objects in aerial images and fits a rotated box to each, so ships at a pier or trucks on a diagonal road get a tight outline. YOLO26-m with an oriented-box head, trained from COCO weights for 10 hours on a Kaggle GPU on 1024 px tiles.",
+    role: "Solo project. Scored once on the official val split, never trained on. Bridges and helicopters are the weak classes.",
+    metrics: [
+      { value: 0.818, decimals: 3, label: "mAP50, oriented boxes" },
+      { value: 15, decimals: 0, label: "Object classes" },
+      { value: 55653, decimals: 0, label: "Val objects scored" },
+    ],
+    stack: ["PyTorch", "YOLO26-OBB", "Ultralytics", "OpenCV", "Kaggle GPU"],
+    links: [{ label: "Code", href: "https://github.com/Manheim666/DOTA-Object-Detection" }],
+  },
 ];
 
 const pathNewestFirst = [
@@ -195,7 +214,7 @@ export const skills = {
 };
 
 // Display order and numbering for projects (computer vision first)
-export const projects = ["bee", "cassava", "wheat", "fire", "screw", "cmi"]
+export const projects = ["bee", "cassava", "wheat", "dota", "fire", "screw", "cmi"]
   .map((id) => projectList.find((p) => p.id === id))
   .map((p, i) => ({ ...p, index: String(i + 1).padStart(2, "0") }));
 
