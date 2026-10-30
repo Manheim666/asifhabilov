@@ -133,6 +133,25 @@ const projectList = [
     stack: ["PyTorch", "timm", "ConvNeXt", "EfficientNetV2", "Kaggle GPU"],
     links: [{ label: "Code", href: "https://github.com/Manheim666/cassava-leaf-disease" }],
   },
+  {
+    id: "wheat",
+    index: "06",
+    title: "Wheat heads",
+    tagline: "Counting wheat heads in field photos from seven research sites",
+    image: "/assets/img/wheat-detections.webp",
+    fit: "contain",
+    imageAlt: "Four wheat field photos from the competition test set with a box drawn around every detected wheat head, 17 to 29 per photo.",
+    summary:
+      "Kaggle Global Wheat Detection. Finds every wheat head in dense, overlapping field photos from seven research sites in France, Switzerland, the UK and Canada. YOLO26-m trained at full 1024 px resolution on a Kaggle GPU, scored with the competition's strict metric written from scratch.",
+    role: "Solo project. Ripe, densely packed wheat from the Arvalis sites is the hardest case; the README breaks the score down by site.",
+    metrics: [
+      { value: 0.698, decimals: 3, label: "mAP, IoU 0.50–0.75" },
+      { value: 7, decimals: 0, label: "Research sites" },
+      { value: 147793, decimals: 0, label: "Labelled heads" },
+    ],
+    stack: ["PyTorch", "YOLO26", "Ultralytics", "OpenCV", "Kaggle GPU"],
+    links: [{ label: "Code", href: "https://github.com/Manheim666/global-wheat-detection" }],
+  },
 ];
 
 const pathNewestFirst = [
@@ -176,7 +195,7 @@ export const skills = {
 };
 
 // Display order and numbering for projects (computer vision first)
-export const projects = ["bee", "cassava", "fire", "screw", "cmi"]
+export const projects = ["bee", "cassava", "wheat", "fire", "screw", "cmi"]
   .map((id) => projectList.find((p) => p.id === id))
   .map((p, i) => ({ ...p, index: String(i + 1).padStart(2, "0") }));
 
