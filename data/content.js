@@ -145,7 +145,7 @@ const projectList = [
       "Kaggle Global Wheat Detection. Finds every wheat head in dense, overlapping field photos from seven research sites in France, Switzerland, the UK and Canada. YOLO26-m trained at full 1024 px resolution on a Kaggle GPU, scored with the competition's strict metric written from scratch.",
     role: "Solo project. Ripe, densely packed wheat from the Arvalis sites is the hardest case; the README breaks the score down by site.",
     metrics: [
-      { value: 0.698, decimals: 3, label: "mAP, IoU 0.50–0.75" },
+      { value: 0.70, decimals: 2, label: "mAP, IoU 0.50–0.75" },
       { value: 7, decimals: 0, label: "Research sites" },
       { value: 147793, decimals: 0, label: "Labelled heads" },
     ],
