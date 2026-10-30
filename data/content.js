@@ -114,7 +114,7 @@ const projectList = [
     stack: ["LightGBM", "XGBoost", "CatBoost", "Polars", "scikit-learn"],
     links: [
       { label: "Code", href: "https://github.com/Manheim666/problematic-internet-use" },
-      { label: "Notebook", href: "https://github.com/Manheim666/problematic-internet-use/blob/master/walkthrough.ipynb" },
+      { label: "Notebook", href: "https://github.com/Manheim666/problematic-internet-use/blob/master/problematic_internet_use.ipynb" },
     ],
   },
   {
@@ -136,7 +136,7 @@ const projectList = [
     stack: ["PyTorch", "timm", "ConvNeXt", "EfficientNetV2", "Kaggle GPU"],
     links: [
       { label: "Code", href: "https://github.com/Manheim666/cassava-leaf-disease" },
-      { label: "Notebook", href: "https://github.com/Manheim666/cassava-leaf-disease/blob/master/walkthrough.ipynb" },
+      { label: "Notebook", href: "https://github.com/Manheim666/cassava-leaf-disease/blob/master/cassava_leaf_disease.ipynb" },
     ],
   },
   {
@@ -158,7 +158,7 @@ const projectList = [
     stack: ["PyTorch", "YOLO26", "Ultralytics", "OpenCV", "Kaggle GPU"],
     links: [
       { label: "Code", href: "https://github.com/Manheim666/global-wheat-detection" },
-      { label: "Notebook", href: "https://github.com/Manheim666/global-wheat-detection/blob/main/walkthrough.ipynb" },
+      { label: "Notebook", href: "https://github.com/Manheim666/global-wheat-detection/blob/main/global_wheat_detection.ipynb" },
     ],
   },
   {
@@ -180,7 +180,7 @@ const projectList = [
     stack: ["PyTorch", "YOLO26-OBB", "Ultralytics", "OpenCV", "Kaggle GPU"],
     links: [
       { label: "Code", href: "https://github.com/Manheim666/DOTA-Object-Detection" },
-      { label: "Notebook", href: "https://github.com/Manheim666/DOTA-Object-Detection/blob/main/walkthrough.ipynb" },
+      { label: "Notebook", href: "https://github.com/Manheim666/DOTA-Object-Detection/blob/main/dota_oriented_detection.ipynb" },
     ],
   },
 ];
