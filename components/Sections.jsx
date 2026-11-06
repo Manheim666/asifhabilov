@@ -1,42 +1,62 @@
-import { person, about, path, skills } from "../data/content";
+import { person, about, path, asset } from "../data/content";
 import ContactForm from "./ContactForm";
+import { Clock, CopyEmail, Gpa, Spot } from "./Interactive";
 
-export function Nav() {
-  return (
-    <header className="nav">
-      <a href="#top" className="nav-mark">Asif Habilov</a>
-      <nav aria-label="Main">
-        <a href="#about">About</a>
-        <a href="#work">Work</a>
-        <a href="#path">Path</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </header>
-  );
-}
+const fact = (k) => about.facts.find((f) => f.k === k).v;
 
 export function About() {
+  const [gpa, of] = fact("GPA").split(" / ");
   return (
-    <section className="about wrap" id="about">
-      <h2 className="eyebrow">About</h2>
+    <section className="section wrap" id="about">
+      <h2 className="big"><span>About</span> <b>me</b></h2>
       <p className="about-lead">{about.lead}</p>
-      <div className="about-side">
-        <p>{about.body}</p>
-        <p>{about.music}</p>
-      </div>
-      <dl className="ledger about-facts">
-        {about.facts.map((f) => (
-          <div key={f.k}><dt>{f.k}</dt><dd>{f.v}</dd></div>
-        ))}
-      </dl>
+      <Spot className="bento">
+        <div className="tile tile-cv">
+          <div className="cv-copy">
+            <h3 className="label">Curriculum vitae</h3>
+            <p className="tile-title">Education, experience and skills</p>
+            <p className="muted">PDF, 2 pages</p>
+            <div className="cv-actions">
+              <a className="btn btn-accent" href="#cv">View CV</a>
+              <a className="btn" href={asset(person.cv)} download="Asif_Habilov_CV.pdf">Download</a>
+            </div>
+          </div>
+          <svg className="cv-icon" viewBox="0 0 96 120" aria-hidden="true">
+            <path d="M12 4h50l22 22v90H12z" /><path d="M62 4v22h22" /><path d="M30 54h36M30 70h36M30 86h22" />
+          </svg>
+        </div>
+        <div className="tile tile-study">
+          <h3 className="label">Studying</h3>
+          <p className="tile-title">{fact("Major")}, {fact("University")}</p>
+          <Gpa value={+gpa} of={of} />
+          <p className="muted">GPA. Graduating {fact("Graduation")}.</p>
+        </div>
+        <div className="tile tile-goal">
+          <h3 className="label">Goal</h3>
+          <p>{about.goal}</p>
+        </div>
+        <div className="tile tile-band">
+          <h3 className="label">Outside of tech</h3>
+          <p>{about.music}</p>
+          <span className="eq" aria-hidden="true"><i /><i /><i /><i /><i /><i /></span>
+        </div>
+        <div className="tile tile-lang">
+          <h3 className="label">Languages</h3>
+          <ul>{fact("Languages").split(", ").map((l) => <li key={l}>{l}</li>)}</ul>
+        </div>
+        <div className="tile tile-clock">
+          <h3 className="label">Time in Baku</h3>
+          <Clock />
+        </div>
+      </Spot>
     </section>
   );
 }
 
 export function Path() {
   return (
-    <section className="path wrap" id="path">
-      <h2 className="big">Path so far</h2>
+    <section className="section wrap" id="path">
+      <h2 className="big"><span>Path</span> <b>so far</b></h2>
       <ol className="path-list">
         {path.map((p) => (
           <li key={p.title}>
@@ -50,41 +70,24 @@ export function Path() {
   );
 }
 
-export function Skills() {
-  return (
-    <section className="skills wrap" id="skills">
-      <h2 className="big">Tools I use</h2>
-      <div className="skills-grid">
-        {skills.groups.map((g) => (
-          <div key={g.title}>
-            <h3>{g.title}</h3>
-            <ul>{g.items.map((i) => <li key={i}>{i}</li>)}</ul>
-          </div>
-        ))}
-        <div>
-          <h3>Learning now</h3>
-          <ul>{skills.learning.map((i) => <li key={i}>{i}</li>)}</ul>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 export function Contact() {
   return (
     <section className="contact" id="contact">
       <div className="wrap contact-grid">
-        <div>
-          <h2 className="big">Hire me for an internship or a junior role</h2>
+        <div className="contact-copy">
+          <h2 className="big">Looking for an internship or junior role</h2>
           <p>{person.status}.</p>
-          <a className="contact-mail" href={`mailto:${person.email}`}>{person.email}</a>
+          <CopyEmail email={person.email} />
           <p className="contact-links">
             <a href={person.github} target="_blank" rel="noopener">GitHub</a>
             <a href={person.linkedin} target="_blank" rel="noopener">LinkedIn</a>
+            <a href="#cv">CV</a>
             <span>{person.location}</span>
           </p>
         </div>
-        <ContactForm email={person.email} formKey={person.web3formsKey} />
+        <div className="tile contact-tile">
+          <ContactForm email={person.email} formKey={person.web3formsKey} />
+        </div>
       </div>
     </section>
   );

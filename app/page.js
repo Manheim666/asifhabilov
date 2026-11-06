@@ -1,6 +1,10 @@
+import Nav from "../components/Nav";
 import Hero from "../components/Hero";
+import Ticker from "../components/Ticker";
 import Work from "../components/Work";
-import { About, Path, Skills, Contact, Footer, Nav } from "../components/Sections";
+import Tools from "../components/Tools";
+import CvViewer from "../components/CvViewer";
+import { About, Path, Contact, Footer } from "../components/Sections";
 
 export default function Page() {
   return (
@@ -8,13 +12,15 @@ export default function Page() {
       <Nav />
       <main>
         <Hero />
-        <About />
+        <Ticker />
         <Work />
+        <About />
         <Path />
-        <Skills />
+        <Tools />
         <Contact />
       </main>
       <Footer />
+      <CvViewer />
     </>
   );
 }

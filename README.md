@@ -8,13 +8,18 @@ No model runs in the browser. Detections are computed once by the scripts below 
 data/content.js          all text, projects, numbers, links (edit this)
 data/wheat.json          wheat detections behind the hero slider
 data/bee.json            bee and flower tracks for the clean clip, with visit logic applied
-components/Hero.jsx      name, cut-off slider, field photo
-components/Work.jsx      the seven projects
+components/Nav.jsx       floating nav, current section, dark and light switch
+components/Hero.jsx      name, cut-off slider, field photo with pointer read-out
+components/Ticker.jsx    moving row of headline scores, each opens its project
+components/Work.jsx      number tabs, seven strips, opens the panel from the URL hash
+components/ProjectPanel.jsx  the project overlay (loaded only when a project opens)
 components/BeeVisits.jsx video with live track overlay and visit counter
-components/Confusion.jsx interactive cassava confusion matrix
-components/Sections.jsx  nav, about, path, skills, contact, footer
-styles/site.css          colours (top of file), type, layout
-app/layout.js            fonts, page title, social preview
+components/Confusion.jsx interactive confusion matrix
+components/Interactive.jsx  tile light, Baku clock, GPA count, copy email
+components/Tools.jsx     tool names; pointing at one lists the projects that used it
+components/Sections.jsx  about, path, contact, footer
+styles/site.css          colours for both themes and type scale (top of file), layout
+app/layout.js            fonts (Saira, Inter), saved-theme script, page title, social preview
 public/assets/           images (WebP) and video
 scripts/                 export_detections.py, export_bee_tracks.py, bee_visits.py
 .github/workflows/deploy.yml  builds and deploys on every push to master
@@ -28,7 +33,8 @@ npm run dev          # http://localhost:3000, live reload
 ```
 - **Change text or numbers:** edit `data/content.js`. Keep every metric tied to a repository you can show.
 - **Add a project:** add an object to `projects` and put a WebP image (around 1600 px wide) in `public/assets/img/`.
-- **Colours:** the `:root` variables in `styles/site.css`.
+- **Colours:** the variables at the top of `styles/site.css`, including `--band` for the contact section. Dark is on `:root`; light appears twice, for the system setting and for the switch, so change both. Each project's own colour is `accents` in `data/content.js`.
+- **Link to one project:** add its id to the address, for example `/asifhabilov/#work/wheat`.
 
 ## Build and test
 ```bash
@@ -40,9 +46,10 @@ Serve `out/` under `/asifhabilov/` to test it. Asset paths break at the bare roo
 The repository is `Manheim666/asifhabilov`. `.github/workflows/deploy.yml` builds and publishes to GitHub Pages on every push to `master`, so merging to `master` puts the site live at https://manheim666.github.io/asifhabilov/.
 
 ## Motion and accessibility
-- With "reduce motion" on, the slider starts at the shipped cut-off, the bee video stays paused, and smooth scrolling is off.
-- Without JavaScript, all content is still rendered (the HTML is static).
-- The slider, field buttons and confusion matrix all work from the keyboard.
+- With "reduce motion" on, the slider starts at the shipped cut-off, the ticker stops and scrolls by hand, the bee video stays paused, numbers appear without counting, and smooth scrolling is off.
+- Without JavaScript the page still shows everything except the project panels, which need it. A plain list of code links takes their place.
+- The slider, field buttons, strips and confusion matrix all work from the keyboard. In a panel, Esc closes, the left and right arrows change project, and focus returns to the strip. The browser Back button closes it too.
+- The theme follows the system until someone uses the switch; the choice is saved in `localStorage` as `theme:v1`.
 
 ## Privacy
 The page shows only your email, GitHub and city. Your phone number, ID documents and certificate scans are not published.

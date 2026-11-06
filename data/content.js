@@ -11,24 +11,25 @@ export const person = {
     "Final-year Computer Science student in Baku. I build ML systems end to end, from raw data to a model people can actually use.",
   location: "Baku, Azerbaijan · UTC+4",
   email: "asif.habilov@gmail.com",
+  cv: "/assets/Asif_Habilov_CV.pdf",
   github: "https://github.com/Manheim666",
   linkedin: "https://www.linkedin.com/in/asif-habilov-a6a0a2399/",
-  status: "Open to internships and junior roles, remote or Baku",
+  status: "Available remotely or in Baku",
   // Optional free key from https://web3forms.com (sent to this inbox). Empty = FormSubmit delivers to the email above.
   web3formsKey: "c03f8a1a-0b3c-4e07-a114-fd3447ded8b6",
 };
 
 export const about = {
-  lead: "I work on problems where the data comes from the real world, from cameras, satellites and field sensors, and has to be understood before any model can use it.",
-  body: "I’m a final-year Computer Science student at Baku State University, in the Faculty of Applied Mathematics and Cybernetics. I like the careful parts of the work: validating honestly, choosing thresholds that match the real cost of a mistake, and writing down where a model still fails.",
-  music: "Outside of tech, I make music. I founded Harmony, a rock band, and play rhythm guitar in it.",
+  lead: "I work on computer vision and machine learning, using field photos, satellite images and weather data.",
+  goal: "Building reliable computer vision systems for environmental monitoring.",
+  music: "Founder and rhythm guitarist of Harmony, a rock band.",
   facts: [
     { k: "Major", v: "BSc Computer Science" },
     { k: "University", v: "Baku State University" },
     { k: "GPA", v: "95.25 / 100" },
     { k: "Graduation", v: "July 2027" },
     { k: "Based in", v: "Baku, Azerbaijan" },
-    { k: "Languages", v: "Azerbaijani (native), English (C1)" },
+    { k: "Languages", v: "Azerbaijani (native), English (C1 · IELTS 8.0)" },
   ],
 };
 
@@ -42,8 +43,8 @@ const projectList = [
     imageAlt:
       "A honeybee on a purple thistle flower, with a blue tracking box on the bee and a green box on the flower.",
     summary:
-      "YOLO26 detectors for flowers and five insect classes, BoT-SORT tracking, and a visit only counts after two seconds on a flower, so each bee is counted once.",
-    role: "Team project · main contributor (142 of 179 commits): data pipeline, detection and tracking engine, FastAPI back end.",
+      "Counts insect visits to flowers in orchard video. YOLO26 detects flowers and five insect classes, and BoT-SORT tracks them. A visit counts after two seconds on a flower.",
+    role: "Team project, main contributor (142 of 179 commits): data pipeline, detection and tracking engine, FastAPI back end.",
     metrics: [
       { value: 0.808, decimals: 3, label: "Flower mAP@0.5" },
       { value: 0.669, decimals: 3, label: "Insect mAP@0.5" },
@@ -60,8 +61,8 @@ const projectList = [
     image: "/assets/img/wildfire-dashboard.webp",
     imageAlt: "The WildFire dashboard with today's fire risk for Baku, a 30-day outlook and a risk map.",
     summary:
-      "ERA5 weather and NASA FIRMS satellite fires, 184 engineered features, 14 models compared. CatBoost tuned with Optuna, calibrated and explained with SHAP. The live dashboard refreshes daily.",
-    role: "Team of five · I built the data ingestion, the fire classifier and its calibration, and the shared Python module.",
+      "Forecasts fire risk for 16 cities from ERA5 weather and NASA FIRMS fire records. 184 features and 14 models compared. The final CatBoost model is tuned with Optuna, calibrated and explained with SHAP. The dashboard updates daily.",
+    role: "Team of five. My part: data ingestion, the fire classifier and its calibration, the shared Python module.",
     metrics: [
       { value: 0.89, decimals: 2, label: "ROC-AUC, 2025 test" },
       { value: 0.8, decimals: 2, label: "Recall on fire days" },
@@ -81,7 +82,7 @@ const projectList = [
     image: "/assets/img/screw-gradcam.webp",
     imageAlt: "Six screws, nuts and washers with Grad-CAM heatmaps over each part, all classified correctly.",
     summary:
-      "A ConvNeXt-Tiny fine-tuned on six classes, compared against a classical OpenCV baseline. Grad-CAM confirms the model looks at the part, not the background.",
+      "Fine-tuned ConvNeXt-Tiny on six classes and compared it with a classical OpenCV baseline. Grad-CAM shows the model looks at the part, not the background.",
     role: "Solo project.",
     metrics: [
       { value: 0.989, decimals: 3, label: "Test macro-F1" },
@@ -98,8 +99,8 @@ const projectList = [
     tagline: "Screening children for problematic internet use",
     fit: "contain",
     summary:
-      "Kaggle Child Mind Institute competition. Predicts a child's severity index from physical, fitness, sleep and screen-time data, so screening doesn't depend on a long clinical questionnaire. Two LightGBM, XGBoost and CatBoost ensembles, one on the severity index and one on the 0–80 questionnaire total, blended with cut-offs tuned for quadratic weighted kappa.",
-    role: "Solo project. Wrist-sensor summaries were tested and did not improve validation, so the simpler model was kept.",
+      "Kaggle competition from the Child Mind Institute: predicting a child's severity index from physical, fitness, sleep and screen-time data. Two blended ensembles of LightGBM, XGBoost and CatBoost, with cut-offs tuned for quadratic weighted kappa.",
+    role: "Solo project. Wrist-sensor features did not improve validation and were left out.",
     metrics: [
       { value: 0.46, decimals: 2, label: "QWK, nested CV" },
       { value: 2736, decimals: 0, label: "Children" },
@@ -118,8 +119,8 @@ const projectList = [
     tagline: "Diagnosing crop disease from farmers' phone photos",
     fit: "contain",
     summary:
-      "Kaggle Cassava Leaf Disease competition. Identifies four cassava diseases, or a healthy plant, from ordinary phone photos taken by farmers in Uganda. A ConvNeXt-Small and an EfficientNetV2-S, fine-tuned with label smoothing for noisy labels on a Kaggle GPU, averaged into one prediction.",
-    role: "Solo project. The hardest case is bacterial blight versus healthy leaves; the README shows where the model fails.",
+      "Kaggle competition: identifying four cassava diseases or a healthy plant from farmers' phone photos in Uganda. An ensemble of ConvNeXt-Small and EfficientNetV2-S, trained with label smoothing for noisy labels.",
+    role: "Solo project. Hardest case: bacterial blight versus healthy leaves.",
     metrics: [
       { value: 0.899, decimals: 3, label: "Holdout accuracy" },
       { value: 0.82, decimals: 2, label: "Macro-F1" },
@@ -138,8 +139,8 @@ const projectList = [
     tagline: "Counting wheat heads in field photos from seven research sites",
     fit: "contain",
     summary:
-      "Kaggle Global Wheat Detection. Finds every wheat head in dense, overlapping field photos from seven research sites in France, Switzerland, the UK and Canada. YOLO26-m trained at full 1024 px resolution on a Kaggle GPU, scored with the competition's strict metric written from scratch.",
-    role: "Solo project. Ripe, densely packed wheat from the Arvalis sites is the hardest case; the README breaks the score down by site.",
+      "Kaggle competition: detecting wheat heads in dense field photos from seven research sites. YOLO26-m trained at 1024 px and scored with the competition metric, implemented from scratch.",
+    role: "Solo project. Hardest case: ripe, densely packed wheat from the Arvalis sites.",
     metrics: [
       { value: 0.70, decimals: 2, label: "mAP, IoU 0.50–0.75" },
       { value: 7, decimals: 0, label: "Research sites" },
@@ -160,8 +161,8 @@ const projectList = [
     fit: "contain",
     imageAlt: "Two aerial images with rotated boxes: a marina where every moored boat and pier is outlined, and a sports club with tennis courts, a pool and parked cars.",
     summary:
-      "DOTA-v1 oriented object detection. Finds 15 kinds of objects in aerial images and fits a rotated box to each, so ships at a pier or trucks on a diagonal road get a tight outline. YOLO26-m with an oriented-box head, trained from COCO weights for 10 hours on a Kaggle GPU on 1024 px tiles.",
-    role: "Solo project. Scored once on the official val split, never trained on. Bridges and helicopters are the weak classes.",
+      "Oriented detection of 15 object classes in DOTA-v1 aerial images. YOLO26-m with an oriented-box head, trained from COCO weights for 10 hours on a Kaggle GPU on 1024 px tiles.",
+    role: "Solo project. Scored on the official validation split. Weakest classes: bridges and helicopters.",
     metrics: [
       { value: 0.818, decimals: 3, label: "mAP50, oriented boxes" },
       { value: 15, decimals: 0, label: "Object classes" },
@@ -205,13 +206,16 @@ const pathNewestFirst = [
 
 export const skills = {
   groups: [
-    { title: "Programming", items: ["Python", "SQL"] },
-    { title: "Machine learning", items: ["Supervised and unsupervised learning", "Gradient boosting models (XGBoost, LightGBM, CatBoost)", "Random forests and ensembles", "Time-series forecasting", "Hyperparameter tuning with Optuna"] },
-    { title: "Deep learning and vision", items: ["PyTorch", "CNNs and RNNs", "Object detection and tracking (YOLO, BoT-SORT)", "OpenCV image processing", "Transfer learning"] },
-    { title: "Data and visualisation", items: ["pandas and NumPy", "scikit-learn", "Plotly and Folium", "Matplotlib"] },
+    { title: "Programming", tools: ["Python", "SQL", "FastAPI"] },
+    { title: "Deep learning and vision", tools: ["PyTorch", "YOLO", "OpenCV", "timm", "BoT-SORT"], also: "CNNs and RNNs, transfer learning, object detection and tracking." },
+    { title: "Machine learning", tools: ["scikit-learn", "XGBoost", "LightGBM", "CatBoost", "Optuna"], also: "Supervised and unsupervised learning, random forests and ensembles, time-series forecasting." },
+    { title: "Data and visualisation", tools: ["pandas", "Polars", "NumPy", "Plotly", "Folium", "Matplotlib"] },
   ],
-  learning: ["SHAP and explainable AI", "RAG and LLM applications", "TensorFlow"],
+  learning: ["SHAP", "RAG and LLMs", "TensorFlow"],
 };
+
+// Each project's colour in the Work strips and its panel. All clear 4.5:1 with black text.
+export const accents = { bee: "#f2c14e", cassava: "#6fd6a0", wheat: "#dccb7a", dota: "#7db8f0", fire: "#f2a65a", screw: "#b9a6f5", cmi: "#5fd0c5" };
 
 // Display order and numbering for projects (computer vision first)
 export const projects = ["bee", "cassava", "wheat", "dota", "fire", "screw", "cmi"]

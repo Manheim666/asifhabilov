@@ -24,7 +24,6 @@ export default function Confusion({ classes, matrix, title, noun, start = [0, 1]
                 key={`${i}-${j}`}
                 className={i === r && j === c ? "sel" : ""}
                 style={{ "--s": Math.pow(s, 0.55) }}
-                data-dark={Math.pow(s, 0.55) >= 0.52 ? "" : undefined}
                 aria-label={`True ${classes[i]}, predicted ${classes[j]}: ${v}`}
                 onMouseEnter={() => set([i, j])}
                 onFocus={() => set([i, j])}
