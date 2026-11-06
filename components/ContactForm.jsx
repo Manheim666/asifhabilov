@@ -40,7 +40,7 @@ export default function ContactForm({ email, formKey }) {
   }
 
   return (
-    <form className="contact-form" onSubmit={onSubmit} data-reveal>
+    <form className="contact-form" onSubmit={onSubmit}>
       <div className="field">
         <input id="cf-name" name="name" required autoComplete="name" placeholder=" " />
         <label htmlFor="cf-name">Your name</label>

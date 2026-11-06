@@ -2,3 +2,5 @@ node_modules/
 .next/
 out/
 shot-*.png
+.taste-skill/
+__pycache__/

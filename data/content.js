@@ -12,18 +12,16 @@ export const person = {
   location: "Baku, Azerbaijan · UTC+4",
   email: "asif.habilov@gmail.com",
   github: "https://github.com/Manheim666",
-  // linkedin: "https://www.linkedin.com/in/YOUR-HANDLE",
+  linkedin: "https://www.linkedin.com/in/asif-habilov-a6a0a2399/",
   status: "Open to internships and junior roles, remote or Baku",
   // Optional free key from https://web3forms.com (sent to this inbox). Empty = FormSubmit delivers to the email above.
   web3formsKey: "c03f8a1a-0b3c-4e07-a114-fd3447ded8b6",
 };
 
 export const about = {
-  paragraphs: [
-    "I’m a final-year Computer Science student at Baku State University, in the Faculty of Applied Mathematics and Cybernetics. I’m drawn to problems where the data comes from the real world, from cameras, satellites and field sensors, and has to be understood and cleaned before any model can use it.",
-    "My main interests are computer vision and applied machine learning, especially for environmental and agricultural problems. I like the careful parts of the work: validating honestly, choosing thresholds that match the real cost of a mistake, and writing down where a model still fails.",
-    "Outside of tech, I make music. I founded Harmony, a rock band, and play rhythm guitar in it.",
-  ],
+  lead: "I work on problems where the data comes from the real world, from cameras, satellites and field sensors, and has to be understood before any model can use it.",
+  body: "I’m a final-year Computer Science student at Baku State University, in the Faculty of Applied Mathematics and Cybernetics. I like the careful parts of the work: validating honestly, choosing thresholds that match the real cost of a mistake, and writing down where a model still fails.",
+  music: "Outside of tech, I make music. I founded Harmony, a rock band, and play rhythm guitar in it.",
   facts: [
     { k: "Major", v: "BSc Computer Science" },
     { k: "University", v: "Baku State University" },
@@ -31,8 +29,6 @@ export const about = {
     { k: "Graduation", v: "July 2027" },
     { k: "Based in", v: "Baku, Azerbaijan" },
     { k: "Languages", v: "Azerbaijani (native), English (C1)" },
-    { k: "Interests", v: "Computer vision, applied ML, environmental and agricultural data" },
-    { k: "Open to", v: "Internships and junior roles, remote or Baku" },
   ],
 };
 
@@ -100,9 +96,7 @@ const projectList = [
     index: "04",
     title: "Internet-use risk",
     tagline: "Screening children for problematic internet use",
-    image: "/assets/img/cmi-results.webp",
     fit: "contain",
-    imageAlt: "Confusion matrix of predicted versus true severity, next to a bar chart of the most important features: internet hours by age, age and sleep disturbance score.",
     summary:
       "Kaggle Child Mind Institute competition. Predicts a child's severity index from physical, fitness, sleep and screen-time data, so screening doesn't depend on a long clinical questionnaire. Two LightGBM, XGBoost and CatBoost ensembles, one on the severity index and one on the 0–80 questionnaire total, blended with cut-offs tuned for quadratic weighted kappa.",
     role: "Solo project. Wrist-sensor summaries were tested and did not improve validation, so the simpler model was kept.",
@@ -122,9 +116,7 @@ const projectList = [
     index: "05",
     title: "Cassava disease",
     tagline: "Diagnosing crop disease from farmers' phone photos",
-    image: "/assets/img/cassava-results.webp",
     fit: "contain",
-    imageAlt: "Ten cassava leaf photos, two per class, each correctly classified, next to a confusion matrix of the five classes.",
     summary:
       "Kaggle Cassava Leaf Disease competition. Identifies four cassava diseases, or a healthy plant, from ordinary phone photos taken by farmers in Uganda. A ConvNeXt-Small and an EfficientNetV2-S, fine-tuned with label smoothing for noisy labels on a Kaggle GPU, averaged into one prediction.",
     role: "Solo project. The hardest case is bacterial blight versus healthy leaves; the README shows where the model fails.",
@@ -144,9 +136,7 @@ const projectList = [
     index: "06",
     title: "Wheat heads",
     tagline: "Counting wheat heads in field photos from seven research sites",
-    image: "/assets/img/wheat-detections.webp",
     fit: "contain",
-    imageAlt: "Four wheat field photos from the competition test set with a box drawn around every detected wheat head, 17 to 29 per photo.",
     summary:
       "Kaggle Global Wheat Detection. Finds every wheat head in dense, overlapping field photos from seven research sites in France, Switzerland, the UK and Canada. YOLO26-m trained at full 1024 px resolution on a Kaggle GPU, scored with the competition's strict metric written from scratch.",
     role: "Solo project. Ripe, densely packed wheat from the Arvalis sites is the hardest case; the README breaks the score down by site.",
@@ -214,8 +204,6 @@ const pathNewestFirst = [
 ];
 
 export const skills = {
-  // Short names for the scrolling band under the About section
-  marquee: ["Python", "SQL", "PyTorch", "Computer vision", "Gradient boosting", "OpenCV", "YOLO", "scikit-learn", "Forecasting", "Deep learning"],
   groups: [
     { title: "Programming", items: ["Python", "SQL"] },
     { title: "Machine learning", items: ["Supervised and unsupervised learning", "Gradient boosting models (XGBoost, LightGBM, CatBoost)", "Random forests and ensembles", "Time-series forecasting", "Hyperparameter tuning with Optuna"] },
@@ -236,3 +224,25 @@ export const path = [0, 4, 3, 2, 1].map((i) => pathNewestFirst[i]);
 // Site is served from https://manheim666.github.io/asifhabilov/ ; prefix local asset paths
 export const BASE = process.env.NEXT_PUBLIC_BASE_PATH || "";
 export const asset = (p) => (p.startsWith("/") ? BASE + p : p);
+
+// Numbers below come straight from each project's results/metrics.json, not typed from memory.
+export const evidence = {
+  cassava: {
+    classes: ["Bacterial blight", "Brown streak", "Green mottle", "Mosaic", "Healthy"],
+    matrix: [[155, 20, 5, 8, 30], [23, 356, 13, 15, 31], [6, 10, 391, 52, 18], [8, 13, 36, 2560, 14], [40, 28, 23, 40, 385]],
+  },
+  cmi: {
+    classes: ["None", "Mild", "Moderate", "Severe"],
+    matrix: [[1190, 301, 100, 3], [318, 254, 149, 9], [90, 129, 143, 16], [2, 4, 20, 8]],
+  },
+  wheatSites: [
+    ["rres_1", 0.8251], ["inrae_1", 0.8034], ["ethz_1", 0.7577], ["usask_1", 0.6897],
+    ["arvalis_3", 0.6889], ["arvalis_1", 0.6187], ["arvalis_2", 0.5017],
+  ],
+  dota: [
+    ["Plane", 0.9824], ["Ship", 0.9736], ["Tennis court", 0.9504], ["Large vehicle", 0.9075], ["Harbor", 0.8902],
+    ["Storage tank", 0.8821], ["Baseball diamond", 0.843], ["Small vehicle", 0.8295], ["Basketball court", 0.8196],
+    ["Ground track field", 0.7829], ["Roundabout", 0.7758], ["Swimming pool", 0.7185], ["Soccer ball field", 0.6596],
+    ["Bridge", 0.6333], ["Helicopter", 0.6223],
+  ],
+};

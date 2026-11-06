@@ -1,188 +1,69 @@
-import { person, about, projects, path, skills, asset } from "../data/content";
+import { person, about, path, skills } from "../data/content";
 import ContactForm from "./ContactForm";
-
-const fmt = (v, d) => v.toLocaleString("en-US", { minimumFractionDigits: d, maximumFractionDigits: d });
-
-function Chars({ text }) {
-  return text.split("").map((c, i) => (
-    <span className="char" key={i} aria-hidden="true">{c === " " ? " " : c}</span>
-  ));
-}
-
-function Hud() {
-  return <div className="hud" aria-hidden="true"><i /><i /><i /><i /></div>;
-}
 
 export function Nav() {
   return (
     <header className="nav">
-      <a className="brand" href="#top" data-scroll aria-label="Asif Habilov, back to top">HA<span>.</span></a>
-      <nav className="nav-links" aria-label="Main">
-        <a href="#about" data-scroll>About</a>
-        <a href="#work" data-scroll>Work</a>
-        <a href="#path" data-scroll>Path</a>
-        <a href="#skills" data-scroll>Skills</a>
-        <a className="nav-cta" href="#contact" data-scroll>Contact</a>
+      <a href="#top" className="nav-mark">Asif Habilov</a>
+      <nav aria-label="Main">
+        <a href="#about">About</a>
+        <a href="#work">Work</a>
+        <a href="#path">Path</a>
+        <a href="#contact">Contact</a>
       </nav>
-      <button className="theme-toggle" type="button" data-theme-toggle aria-label="Switch between light and dark theme">
-        <span className="tt-sun" aria-hidden="true" /><span className="tt-moon" aria-hidden="true" />
-      </button>
     </header>
-  );
-}
-
-export function Hero() {
-  return (
-    <section className="hero" id="top" aria-label="Introduction">
-      <div className="hero-media" data-hero-media>
-        <video autoPlay muted loop playsInline preload="auto" poster={asset("/assets/video/bees-poster.webp")}
-          aria-label="Two honeybees on a yellow flower, each followed by its own tracking box from the Bee-A-Hero pipeline.">
-          <source src={asset("/assets/video/bees.mp4")} type="video/mp4" />
-        </video>
-      </div>
-      <div className="hero-shade" />
-      <div className="hero-grid" />
-      <Hud />
-      <div className="hero-inner">
-        <p className="hud-tag" data-hero-fade>Live output · Bee-A-Hero tracking</p>
-        <h1 className="display hero-name" aria-label={person.name}>
-          <span className="line"><Chars text={person.first} /></span>
-          <span className="line"><Chars text={person.last} /></span>
-        </h1>
-        <div className="hero-meta">
-          <p className="hero-role" data-hero-fade>{person.role}<small>{person.focus}</small></p>
-          <p className="hero-intro" data-hero-fade>{person.intro}</p>
-          <div className="hero-cta" data-hero-fade>
-            <a className="btn btn-accent" href="#work" data-scroll>See the work</a>
-            <a className="btn" href={`mailto:${person.email}`}>Email me</a>
-          </div>
-        </div>
-      </div>
-      <span className="scroll-cue" aria-hidden="true" />
-    </section>
   );
 }
 
 export function About() {
   return (
-    <section className="section about" id="about" aria-labelledby="about-title">
-      <div className="wrap about-grid">
-        <h2 className="h2" id="about-title" data-reveal>About</h2>
-        <div className="about-body">
-          <div className="about-text">
-            {about.paragraphs.map((p, i) => <p key={i} data-reveal>{p}</p>)}
-          </div>
-          <dl className="facts" data-reveal>
-            {about.facts.map((f) => (
-              <div className="fact" key={f.k}><dt>{f.k}</dt><dd>{f.v}</dd></div>
-            ))}
-          </dl>
-        </div>
+    <section className="about wrap" id="about">
+      <h2 className="eyebrow">About</h2>
+      <p className="about-lead">{about.lead}</p>
+      <div className="about-side">
+        <p>{about.body}</p>
+        <p>{about.music}</p>
       </div>
-    </section>
-  );
-}
-
-export function Marquee() {
-  const row = [...skills.marquee, ...skills.marquee];
-  return (
-    <div className="marquee" aria-hidden="true">
-      <div className="marquee-row" data-marquee="1">{row.map((s, i) => <span key={i}>{s}</span>)}</div>
-      <div className="marquee-row alt" data-marquee="-1">{row.slice().reverse().map((s, i) => <span key={i}>{s}</span>)}</div>
-    </div>
-  );
-}
-
-export function Work() {
-  return (
-    <section className="work" id="work" aria-labelledby="work-title">
-      <div className="wrap section-head" style={{ paddingTop: "clamp(5rem, 12vw, 9rem)" }}>
-        <h2 className="h2" id="work-title" data-reveal>Selected<br />work</h2>
-        <p className="lede" data-reveal>Each project links to its code and reports the numbers from its own evaluation.</p>
-      </div>
-      <div className="work-pin" data-work-pin>
-        <div className="work-count" aria-hidden="true"><span>Scroll</span><span data-work-progress>01 / {String(projects.length).padStart(2, "0")}</span></div>
-        <div className="work-track" data-work-track>
-          {projects.map((p) => (
-            <article className="panel" key={p.id} aria-labelledby={`p-${p.id}`} data-panel>
-              <div className="panel-media" data-panel-media>
-                <img src={asset(p.image)} alt={p.imageAlt} loading="lazy" data-parallax className={p.fit === "contain" ? "fit-contain" : undefined} />
-                <Hud />
-                <span className="panel-index" aria-hidden="true">{p.index}</span>
-              </div>
-              <div className="panel-body">
-                <h3 id={`p-${p.id}`}>{p.title}</h3>
-                <p className="panel-tag">{p.tagline}</p>
-                <p className="panel-summary">{p.summary}</p>
-                <p className="panel-role">{p.role}</p>
-                <div className="metrics">
-                  {p.metrics.map((m) => (
-                    <div className="metric" key={m.label}>
-                      <b data-count={m.value} data-decimals={m.decimals}>{fmt(m.value, m.decimals)}</b>
-                      <span>{m.label}</span>
-                    </div>
-                  ))}
-                </div>
-                <ul className="chips" aria-label="Tools">{p.stack.map((s) => <li key={s}>{s}</li>)}</ul>
-                <div className="panel-links">
-                  {p.links.map((l, i) => (
-                    <a key={l.href} className={`btn${i === 0 && p.links.length > 1 ? " btn-accent" : ""}`} href={l.href} target="_blank" rel="noopener">{l.label}</a>
-                  ))}
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
-      </div>
+      <dl className="ledger about-facts">
+        {about.facts.map((f) => (
+          <div key={f.k}><dt>{f.k}</dt><dd>{f.v}</dd></div>
+        ))}
+      </dl>
     </section>
   );
 }
 
 export function Path() {
   return (
-    <section className="section" id="path" aria-labelledby="path-title" style={{ paddingTop: 0 }}>
-      <div className="wrap">
-        <div className="section-head">
-          <h2 className="h2" id="path-title" data-reveal>Path</h2>
-          <p className="lede" data-reveal>Education, training and experience.</p>
-        </div>
-        <div className="timeline" data-timeline>
-          <span className="timeline-line" aria-hidden="true"><i data-timeline-fill /></span>
-          <ol className="tl-list">
-          {path.map((p) => (
-            <li className="tl-item" key={p.title} data-reveal>
-              <span className="tl-when">{p.when}</span>
-              <div><h3>{p.title}</h3><p>{p.text}</p></div>
-            </li>
-          ))}
-          </ol>
-        </div>
-      </div>
+    <section className="path wrap" id="path">
+      <h2 className="big">Path so far</h2>
+      <ol className="path-list">
+        {path.map((p) => (
+          <li key={p.title}>
+            <time>{p.when}</time>
+            <h3>{p.title}</h3>
+            <p>{p.text}</p>
+          </li>
+        ))}
+      </ol>
     </section>
   );
 }
 
 export function Skills() {
   return (
-    <section className="section" id="skills" aria-labelledby="skills-title" style={{ paddingTop: 0 }}>
-      <div className="wrap">
-        <div className="section-head">
-          <h2 className="h2" id="skills-title" data-reveal>Skills</h2>
-          <p className="lede" data-reveal>What I use in my projects, and what I’m learning now.</p>
-        </div>
-        <div className="bento" data-spotlight>
-          {skills.groups.map((g, i) => (
-            <article className={`bento-card b${i}`} key={g.title} data-reveal>
-              <span className="bento-no" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
-              <h3>{g.title}</h3>
-              <ul className="tags">{g.items.map((it) => <li key={it}>{it}</li>)}</ul>
-            </article>
-          ))}
-          <article className="bento-card learning" data-reveal>
-            <span className="bento-no" aria-hidden="true">+</span>
-            <h3>Learning now</h3>
-            <ul className="tags">{skills.learning.map((it) => <li key={it}>{it}</li>)}</ul>
-          </article>
+    <section className="skills wrap" id="skills">
+      <h2 className="big">Tools I use</h2>
+      <div className="skills-grid">
+        {skills.groups.map((g) => (
+          <div key={g.title}>
+            <h3>{g.title}</h3>
+            <ul>{g.items.map((i) => <li key={i}>{i}</li>)}</ul>
+          </div>
+        ))}
+        <div>
+          <h3>Learning now</h3>
+          <ul>{skills.learning.map((i) => <li key={i}>{i}</li>)}</ul>
         </div>
       </div>
     </section>
@@ -191,20 +72,19 @@ export function Skills() {
 
 export function Contact() {
   return (
-    <section className="contact" id="contact" aria-labelledby="contact-title">
-      <div className="wrap">
-        <p className="skill-label" id="contact-title" data-reveal>{person.status}</p>
-        <a className="display contact-big" href={`mailto:${person.email}`} data-magnet>
-          <span className="line" data-reveal>Let’s build</span>
-          <span className="line accent" data-reveal>something</span>
-        </a>
-        <ContactForm email={person.email} formKey={person.web3formsKey} />
-        <div className="contact-row" data-reveal>
-          <a href={`mailto:${person.email}`}>{person.email}</a>
-          <a href={person.github} target="_blank" rel="noopener">github.com/Manheim666</a>
-          {person.linkedin && <a href={person.linkedin} target="_blank" rel="noopener">LinkedIn</a>}
-          <span>{person.location}</span>
+    <section className="contact" id="contact">
+      <div className="wrap contact-grid">
+        <div>
+          <h2 className="big">Hire me for an internship or a junior role</h2>
+          <p>{person.status}.</p>
+          <a className="contact-mail" href={`mailto:${person.email}`}>{person.email}</a>
+          <p className="contact-links">
+            <a href={person.github} target="_blank" rel="noopener">GitHub</a>
+            <a href={person.linkedin} target="_blank" rel="noopener">LinkedIn</a>
+            <span>{person.location}</span>
+          </p>
         </div>
+        <ContactForm email={person.email} formKey={person.web3formsKey} />
       </div>
     </section>
   );
@@ -212,9 +92,9 @@ export function Contact() {
 
 export function Footer() {
   return (
-    <footer className="footer">
-      <span>© {new Date().getFullYear()} {person.name}</span>
-      <span>Built with Next.js, GSAP and Lenis</span>
+    <footer className="footer wrap">
+      <p>© {new Date().getFullYear()} Asif Habilov</p>
+      <p>Wheat photos: Global Wheat Detection dataset. Boxes and scores are real output from my model.</p>
     </footer>
   );
 }
